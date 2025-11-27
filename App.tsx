@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Page, Tab, UserProfile, Company, Group, Activity, AuditItem, Member } from './types';
 import Login from './pages/Login';
@@ -429,10 +428,11 @@ export default function App() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen w-full bg-[#eef2f6] font-sans">
-      <div id="app-container" className="w-full h-full sm:h-[844px] sm:w-full sm:max-w-[430px] bg-white sm:rounded-[40px] relative overflow-hidden shadow-none sm:shadow-[0_20px_40px_rgba(0,0,0,0.08)] sm:border-[8px] sm:border-gray-900">
-        {/* Removed Status Bar and Capsule */}
-        <div className="h-full w-full pt-[0px] relative overflow-hidden">{renderPage()}</div>
+    // Mobile: block layout (top aligned), h-[100dvh] to fix address bar scrolling. 
+    // Desktop (sm+): flex center, fixed size.
+    <div className="min-h-[100dvh] w-full bg-[#eef2f6] font-sans sm:flex sm:justify-center sm:items-center">
+      <div id="app-container" className="w-full h-[100dvh] sm:h-[844px] sm:w-[430px] bg-white sm:rounded-[40px] relative overflow-hidden shadow-none sm:shadow-2xl sm:border-[8px] sm:border-gray-900">
+        <div className="h-full w-full relative overflow-hidden">{renderPage()}</div>
       </div>
     </div>
   );

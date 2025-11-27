@@ -58,8 +58,8 @@ const HomeTab: React.FC<HomeTabProps> = ({ onNavigate }) => {
 
   return (
     <div className="h-full overflow-y-auto pb-[90px] no-scrollbar">
-      {/* Header - Adjusted for pure web view */}
-      <div className="bg-white/95 backdrop-blur-md px-6 pt-6 pb-2 sticky top-0 z-20 border-b border-gray-50">
+      {/* Header - Sticky with safe area support */}
+      <div className="bg-white/95 backdrop-blur-md px-6 pt-6 pb-2 sticky top-0 z-20 border-b border-gray-50 pt-[max(24px,env(safe-area-inset-top))]">
         <div className="flex justify-between items-center h-[36px]">
             <div>
                 <h2 className="text-lg font-bold text-gray-800 flex items-center gap-1">

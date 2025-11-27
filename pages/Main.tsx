@@ -39,7 +39,7 @@ const Main: React.FC<MainProps> = ({ onNavigate, initialTab, user, isAdmin, onTo
 
   const getNavClass = (tab: Tab) => {
     const isActive = activeTab === tab;
-    return `flex-1 flex flex-col items-center justify-center gap-0.5 cursor-pointer h-full pb-6 active:opacity-70 transition-opacity ${isActive ? 'text-[#D63031]' : 'text-gray-400'}`;
+    return `flex-1 flex flex-col items-center justify-center gap-0.5 cursor-pointer h-full pb-1 active:opacity-70 transition-opacity ${isActive ? 'text-[#D63031]' : 'text-gray-400'}`;
   };
 
   const handleTabClick = (tab: Tab) => {
@@ -54,7 +54,8 @@ const Main: React.FC<MainProps> = ({ onNavigate, initialTab, user, isAdmin, onTo
       </div>
 
       {/* Compact Native-style Bottom Navigation - Highest Z-Index */}
-      <div className="absolute bottom-0 left-0 right-0 h-[83px] bg-white border-t border-gray-200 flex justify-around items-start pt-2 z-50">
+      {/* Added safe-area-inset-bottom support and adjusted height */}
+      <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-start pt-2 z-50 pb-[env(safe-area-inset-bottom)] h-[calc(60px+env(safe-area-inset-bottom))]">
         
         <div onClick={() => handleTabClick(Tab.HOME)} className={getNavClass(Tab.HOME)}>
           <i className={`text-xl ${activeTab === Tab.HOME ? 'fa-solid fa-house' : 'fa-solid fa-house'}`}></i>

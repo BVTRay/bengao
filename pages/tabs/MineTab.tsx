@@ -45,7 +45,8 @@ const MineTab: React.FC<MineTabProps> = ({ onNavigate, user, isAdmin, onToggleRo
         <div className="absolute top-0 w-full h-full bg-gradient-school opacity-5 pointer-events-none"></div>
         <div className="absolute -top-20 -right-20 w-60 h-60 bg-red-100 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
         
-        <div className="relative pt-12 px-6 text-center">
+        {/* Adjusted top padding for safe area */}
+        <div className="relative pt-[max(48px,env(safe-area-inset-top))] px-6 text-center">
           {/* Avatar Section with Edit Button */}
           <div className="relative w-24 h-24 mx-auto mb-4 group">
              <div className="w-full h-full bg-white p-1 rounded-full shadow-soft overflow-hidden">
