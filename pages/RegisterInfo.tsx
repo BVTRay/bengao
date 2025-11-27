@@ -30,14 +30,14 @@ const RegisterInfo: React.FC<RegisterInfoProps> = ({ onNavigate }) => {
               <input 
                 type="text" 
                 placeholder="就职单位 (必填)" 
-                className="w-full text-lg font-bold text-gray-800 placeholder-gray-300 border-b border-gray-100 pb-2 outline-none focus:border-gray-300 transition-colors"
+                className="w-full text-lg font-bold text-gray-800 placeholder-gray-300 border-b border-gray-100 pb-2 outline-none focus:border-gray-300 transition-colors bg-white"
               />
             </div>
             <div>
               <input 
                 type="text" 
                 placeholder="职位头衔 (必填)" 
-                className="w-full text-lg font-bold text-gray-800 placeholder-gray-300 border-b border-gray-100 pb-2 outline-none focus:border-gray-300 transition-colors"
+                className="w-full text-lg font-bold text-gray-800 placeholder-gray-300 border-b border-gray-100 pb-2 outline-none focus:border-gray-300 transition-colors bg-white"
               />
             </div>
           </div>

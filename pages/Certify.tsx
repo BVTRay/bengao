@@ -39,7 +39,7 @@ const Certify: React.FC<CertifyProps> = ({ onNavigate }) => {
             <input 
               type="text" 
               placeholder="请输入您的姓名" 
-              className="w-full p-4 bg-white rounded-xl border border-gray-100 focus:border-red-300 outline-none text-gray-700 transition-colors shadow-sm"
+              className="w-full p-4 bg-white text-gray-800 rounded-xl border border-gray-100 focus:border-red-300 outline-none transition-colors shadow-sm placeholder-gray-400"
             />
           </div>
           
@@ -47,7 +47,7 @@ const Certify: React.FC<CertifyProps> = ({ onNavigate }) => {
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">入学年份</label>
               <div className="relative">
-                <select className="w-full p-4 bg-white rounded-xl border border-gray-100 outline-none text-gray-700 appearance-none shadow-sm">
+                <select className="w-full p-4 bg-white text-gray-800 rounded-xl border border-gray-100 outline-none appearance-none shadow-sm">
                     <option>2010年</option>
                     <option>2011年</option>
                     <option>2012年</option>
@@ -61,7 +61,7 @@ const Certify: React.FC<CertifyProps> = ({ onNavigate }) => {
               <input 
                 type="text" 
                 placeholder="如：15班" 
-                className="w-full p-4 bg-white rounded-xl border border-gray-100 outline-none text-gray-700 shadow-sm"
+                className="w-full p-4 bg-white text-gray-800 rounded-xl border border-gray-100 outline-none shadow-sm placeholder-gray-400"
               />
             </div>
           </div>

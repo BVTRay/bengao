@@ -29,7 +29,7 @@ const Login: React.FC<LoginProps> = ({ onNavigate }) => {
             <input 
               type="tel" 
               placeholder="请输入手机号" 
-              className="w-full pl-12 pr-4 py-4 bg-gray-50 rounded-2xl border-none outline-none text-gray-700 font-medium transition-all focus:translate-y-[-2px] focus:shadow-[0_4px_12px_rgba(0,0,0,0.05)] placeholder-gray-400"
+              className="w-full pl-12 pr-4 py-4 bg-gray-50 text-gray-800 rounded-2xl border-none outline-none font-medium transition-all focus:translate-y-[-2px] focus:shadow-[0_4px_12px_rgba(0,0,0,0.05)] placeholder-gray-400"
             />
           </div>
           <div className="flex gap-3">
@@ -38,7 +38,7 @@ const Login: React.FC<LoginProps> = ({ onNavigate }) => {
               <input 
                 type="text" 
                 placeholder="验证码" 
-                className="w-full pl-12 pr-4 py-4 bg-gray-50 rounded-2xl border-none outline-none text-gray-700 font-medium transition-all focus:translate-y-[-2px] focus:shadow-[0_4px_12px_rgba(0,0,0,0.05)] placeholder-gray-400"
+                className="w-full pl-12 pr-4 py-4 bg-gray-50 text-gray-800 rounded-2xl border-none outline-none font-medium transition-all focus:translate-y-[-2px] focus:shadow-[0_4px_12px_rgba(0,0,0,0.05)] placeholder-gray-400"
               />
             </div>
             <button className="px-5 py-4 bg-white border border-gray-200 rounded-2xl text-gray-600 font-medium text-sm shadow-sm active:scale-95 transition">
