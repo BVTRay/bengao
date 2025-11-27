@@ -430,17 +430,8 @@ export default function App() {
 
   return (
     <div className="flex justify-center items-center min-h-screen w-full bg-[#eef2f6] font-sans">
-      <div id="app-container" className="w-full h-[100vh] sm:h-[844px] sm:w-[390px] bg-white sm:rounded-[40px] relative overflow-hidden shadow-none sm:shadow-[0_20px_40px_rgba(0,0,0,0.08)] sm:border-[8px] sm:border-gray-900">
-        <div className="absolute top-0 left-0 right-0 h-[44px] z-[60] flex justify-between items-end px-6 pb-2 text-xs font-semibold text-gray-900 pointer-events-none mix-blend-darken">
-          <span>9:41</span>
-          <div className="flex gap-1.5 items-center"><i className="fa-solid fa-signal text-[10px]"></i><i className="fa-solid fa-wifi text-[10px]"></i><i className="fa-solid fa-battery-full text-lg"></i></div>
-        </div>
-        <div className="absolute top-[48px] right-[16px] w-[87px] h-[32px] bg-white/60 backdrop-blur-md border border-gray-200/50 rounded-full z-[60] flex items-center justify-evenly shadow-sm pointer-events-auto">
-          <div className="flex-1 flex justify-center items-center cursor-pointer hover:bg-black/5 rounded-l-full h-full"><i className="fa-solid fa-ellipsis text-gray-900 text-xs"></i></div>
-          <div className="w-[1px] h-[18px] bg-gray-300/50"></div>
-          <div className="flex-1 flex justify-center items-center cursor-pointer hover:bg-black/5 rounded-r-full h-full"><div className="w-4 h-4 border-2 border-gray-900 rounded-full flex items-center justify-center relative"><div className="w-1 h-1 bg-gray-900 rounded-full"></div></div></div>
-        </div>
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-[30%] h-1 bg-gray-900/20 rounded-full z-[60] pointer-events-none"></div>
+      <div id="app-container" className="w-full h-full sm:h-[844px] sm:w-full sm:max-w-[430px] bg-white sm:rounded-[40px] relative overflow-hidden shadow-none sm:shadow-[0_20px_40px_rgba(0,0,0,0.08)] sm:border-[8px] sm:border-gray-900">
+        {/* Removed Status Bar and Capsule */}
         <div className="h-full w-full pt-[0px] relative overflow-hidden">{renderPage()}</div>
       </div>
     </div>

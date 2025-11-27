@@ -51,11 +51,11 @@ const SquareTab: React.FC<SquareTabProps> = ({ onNavigate }) => {
   return (
     <div className="h-full overflow-y-auto pb-[90px] no-scrollbar bg-[#F7F8FA]">
       {/* Redesigned Header - Sticky with proper Z-Index */}
-      <div className="glass px-6 pt-[52px] pb-4 sticky top-0 z-30 shadow-sm border-b border-white/50">
+      <div className="glass px-6 pt-6 pb-4 sticky top-0 z-30 shadow-sm border-b border-white/50">
         {/* Title Row */}
         <div className="flex justify-between items-center h-[36px] mb-4">
           <h2 className="text-xl font-bold text-gray-800 tracking-tight">供需广场</h2>
-          <div className="w-[87px]"></div> {/* Spacer for Capsule */}
+          {/* Removed Capsule Spacer */}
         </div>
         
         {/* Action Row: Search + My Posts + Publish */}
