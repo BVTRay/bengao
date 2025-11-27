@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>本溪市高级中学校友汇</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      body {
+        font-family: 'Noto Sans SC', sans-serif;
+        background-color: #eef2f6;
+        -webkit-font-smoothing: antialiased;
+      }
+      /* Hide Scrollbar */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      
+      /* Animation Utilities */
+      .fade-in { animation: fadeIn 0.3s ease-in-out; }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+      /* Figma Style Utilities */
+      .bg-gradient-school { background: linear-gradient(135deg, #FF6B6B 0%, #D63031 100%); }
+      .text-gradient-school { background: linear-gradient(135deg, #FF6B6B 0%, #D63031 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .shadow-soft { box-shadow: 0 10px 30px -10px rgba(214, 48, 49, 0.3); }
+      .shadow-card { box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+      .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.5); }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "@capacitor/cli": "https://aistudiocdn.com/@capacitor/cli@^7.4.4"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
