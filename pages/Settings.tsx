@@ -10,7 +10,7 @@ const Settings: React.FC<SettingsProps> = ({ onNavigate }) => {
   return (
     <div className="h-full flex flex-col bg-[#F7F8FA] fade-in">
       {/* Header */}
-      <div className="px-6 pt-[52px] pb-4 flex items-center bg-white sticky top-0 z-10 border-b border-gray-50">
+      <div className="px-6 pt-[max(12px,env(safe-area-inset-top))] pb-4 flex items-center bg-white sticky top-0 z-10 border-b border-gray-50">
         <button 
             onClick={() => onNavigate(Page.MAIN, Tab.MINE)} 
             className="w-10 h-10 -ml-2 rounded-full bg-white flex items-center justify-center text-gray-800 hover:bg-gray-50 transition text-lg"

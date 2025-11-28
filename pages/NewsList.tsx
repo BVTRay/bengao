@@ -9,7 +9,7 @@ interface NewsListProps {
 const NewsList: React.FC<NewsListProps> = ({ onNavigate }) => {
   return (
     <div className="h-full flex flex-col bg-gray-50 fade-in">
-      <div className="px-6 pt-[52px] pb-4 flex items-center bg-white sticky top-0 z-10 border-b border-gray-100">
+      <div className="px-6 pt-[max(12px,env(safe-area-inset-top))] pb-4 flex items-center bg-white sticky top-0 z-10 border-b border-gray-100">
         <button onClick={() => onNavigate(Page.MAIN)} className="w-10 h-10 -ml-2 rounded-full bg-white flex items-center justify-center text-gray-800 hover:bg-gray-50 transition text-lg">
           <i className="fa-solid fa-chevron-left"></i>
         </button>

@@ -35,7 +35,7 @@ const AlumniDetail: React.FC<AlumniDetailProps> = ({ onNavigate, onBack }) => {
   return (
     <div className="h-full flex flex-col bg-white fade-in relative">
       {/* Header */}
-       <div className="px-6 pt-[52px] pb-2 flex items-center bg-white sticky top-0 z-30">
+       <div className="px-6 pt-[max(12px,env(safe-area-inset-top))] pb-3 flex items-center bg-white sticky top-0 z-30">
         <button 
             onClick={onBack ? onBack : () => onNavigate(Page.MAIN, Tab.HOME)} 
             className="w-10 h-10 -ml-2 rounded-full bg-white flex items-center justify-center text-gray-800 hover:bg-gray-50 transition text-lg"
@@ -106,7 +106,7 @@ const AlumniDetail: React.FC<AlumniDetailProps> = ({ onNavigate, onBack }) => {
       </div>
 
       {/* Bottom Action */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-gray-50 flex gap-4 pb-8 z-30">
+      <div className="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-gray-50 flex gap-4 pb-[max(24px,env(safe-area-inset-bottom))] z-30">
         <button 
             onClick={handlePrivateMessage}
             className="flex-1 py-3 bg-gray-100 text-gray-800 rounded-xl font-bold active:bg-gray-200 transition"

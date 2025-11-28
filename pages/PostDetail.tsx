@@ -35,7 +35,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ onNavigate, onBack }) => {
   return (
     <div className="h-full flex flex-col bg-white fade-in relative">
       {/* Header */}
-      <div className="px-6 pt-[52px] pb-2 flex items-center bg-white sticky top-0 z-30">
+      <div className="px-6 pt-[max(12px,env(safe-area-inset-top))] pb-2 flex items-center bg-white sticky top-0 z-30">
         <button 
             onClick={onBack ? onBack : () => onNavigate(Page.MAIN, Tab.SQUARE)} 
             className="w-10 h-10 -ml-2 rounded-full bg-white flex items-center justify-center text-gray-800 hover:bg-gray-50 transition text-lg"
@@ -114,7 +114,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ onNavigate, onBack }) => {
       </div>
 
       {/* Bottom Action Bar */}
-      <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-white border-t border-gray-50 flex items-center gap-3 pb-8 z-30">
+      <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-white border-t border-gray-50 flex items-center gap-3 pb-[max(24px,env(safe-area-inset-bottom))] z-30">
         <div className="flex-1 bg-gray-100 rounded-full h-10 px-4 flex items-center text-gray-400 text-sm">
             <input type="text" placeholder="看对眼了？聊两句..." className="bg-transparent border-none outline-none w-full placeholder-gray-400" />
         </div>

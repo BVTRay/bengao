@@ -10,7 +10,7 @@ const Search: React.FC<SearchProps> = ({ onNavigate }) => {
   return (
     <div className="h-full flex flex-col bg-white fade-in">
       {/* Search Header - Left Back Button + Search Bar */}
-      <div className="px-4 pt-4 pb-2 flex items-center gap-3 bg-white sticky top-0 z-10">
+      <div className="px-4 pt-[max(12px,env(safe-area-inset-top))] pb-3 flex items-center gap-3 bg-white sticky top-0 z-10">
         <button 
             onClick={() => onNavigate(Page.MAIN, Tab.HOME)} 
             className="w-10 h-10 -ml-2 rounded-full bg-white flex items-center justify-center text-gray-800 hover:bg-gray-50 transition text-lg flex-shrink-0"
