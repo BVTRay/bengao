@@ -183,24 +183,25 @@ button {
 }
 
 .home-red-zone {
-  min-height: 334px;
+  min-height: 304px;
   background:
-    linear-gradient(160deg, #8e1412 0%, #d71918 48%, #ff6245 100%);
+    radial-gradient(circle at 82% 18%, rgba(255, 207, 128, 0.22), transparent 24%),
+    linear-gradient(180deg, #8b1210 0%, #d72520 63%, #fff7f5 100%);
   color: #fff;
-  padding-bottom: 58px;
+  padding-bottom: 38px;
 }
 
 .home-greeting {
-  padding: 12px 24px 18px;
+  padding: 7px 24px 10px;
   display: grid;
-  grid-template-columns: 58px 1fr 48px;
-  gap: 14px;
+  grid-template-columns: 48px 1fr 40px;
+  gap: 12px;
   align-items: center;
 }
 
 .home-avatar {
-  width: 58px;
-  height: 58px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #f5efcf;
   border: 3px solid #d7b045;
@@ -208,13 +209,13 @@ button {
 
 .home-greeting p {
   margin: 0 0 4px;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .home-greeting h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 19px;
   line-height: 1.08;
   font-weight: 700;
   letter-spacing: 0;
@@ -222,8 +223,8 @@ button {
 }
 
 .message-dot {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
@@ -244,9 +245,9 @@ button {
 }
 
 .home-banner {
-  height: 172px;
-  margin: 2px 18px -96px;
-  border-radius: 20px;
+  height: 152px;
+  margin: 8px 18px -70px;
+  border-radius: 18px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 18px 34px rgba(112, 19, 19, 0.22);
@@ -262,7 +263,7 @@ button {
 .banner-shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(227, 40, 35, 0.62), rgba(6, 9, 13, 0.74));
+  background: linear-gradient(180deg, rgba(222, 35, 31, 0.42), rgba(6, 9, 13, 0.62));
 }
 
 .banner-dots {
@@ -287,9 +288,9 @@ button {
 
 .banner-copy {
   position: absolute;
-  left: 28px;
+  left: 26px;
   right: 24px;
-  bottom: 30px;
+  bottom: 20px;
   color: #fff;
 }
 
@@ -297,17 +298,17 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 9px 14px;
+  padding: 7px 12px;
   border-radius: 18px;
   background: #ee2b25;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .banner-copy strong {
   display: block;
-  font-size: 26px;
+  font-size: 20px;
   line-height: 1.1;
   font-weight: 700;
 }
@@ -317,7 +318,7 @@ button {
 }
 
 .service-section {
-  padding-top: 54px;
+  padding-top: 38px;
 }
 
 .section-title-row,
@@ -331,7 +332,7 @@ button {
 .section-title-row h2,
 .hometown-title h2 {
   margin: 0;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -355,33 +356,33 @@ button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 .service-tile {
   min-width: 0;
-  height: 86px;
-  border-radius: 18px;
+  height: 76px;
+  border-radius: 16px;
   background: #fff1ef;
   color: #1e1b19;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  font-size: 13px;
+  gap: 8px;
+  font-size: 12px;
   font-weight: 700;
 }
 
 .service-tile i {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   display: grid;
   place-items: center;
   border-radius: 12px;
   background: #fff;
   color: #e52922;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .service-tile.gold {
@@ -401,12 +402,13 @@ button {
 }
 
 .official-event {
-  margin: 22px 18px 28px;
-  border-radius: 22px;
-  padding: 20px 18px 18px;
-  color: #fff;
-  background: linear-gradient(145deg, #d51613, #fb4639);
-  box-shadow: 0 18px 38px rgba(217, 28, 21, 0.22);
+  margin: 18px 18px 24px;
+  border-radius: 20px;
+  padding: 18px 16px 16px;
+  color: #2f2622;
+  background: linear-gradient(145deg, #fff, #fff3f1);
+  box-shadow: 0 14px 32px rgba(192, 70, 54, 0.12);
+  border: 1px solid rgba(229, 41, 34, 0.1);
 }
 
 .event-top,
@@ -424,8 +426,9 @@ button {
 .event-top span {
   border-radius: 999px;
   padding: 9px 13px;
-  background: rgba(255, 255, 255, 0.18);
-  font-size: 13px;
+  background: #fff0ee;
+  color: #de2a24;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -435,16 +438,16 @@ button {
 }
 
 .official-event h2 {
-  margin: 22px 0 10px;
-  font-size: 29px;
+  margin: 16px 0 8px;
+  font-size: 20px;
   line-height: 1.12;
   font-weight: 700;
 }
 
 .official-event p {
-  margin: 0 0 20px;
-  color: rgba(255, 255, 255, 0.84);
-  font-size: 15px;
+  margin: 0 0 16px;
+  color: #8a625e;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -456,15 +459,16 @@ button {
 .event-meta span {
   border-radius: 14px;
   padding: 10px 13px;
-  background: rgba(255, 255, 255, 0.14);
-  font-size: 13px;
+  background: #fff0ee;
+  color: #b8413a;
+  font-size: 12px;
   font-weight: 700;
 }
 
 .event-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
-  margin-top: 18px;
-  padding-top: 18px;
+  border-top: 1px solid rgba(229, 41, 34, 0.1);
+  margin-top: 14px;
+  padding-top: 14px;
   gap: 8px;
 }
 
@@ -495,7 +499,8 @@ button {
 }
 
 .event-footer strong {
-  font-size: 15px;
+  color: #5c4b46;
+  font-size: 13px;
   white-space: nowrap;
 }
 
@@ -1380,12 +1385,12 @@ button {
 
 .event-cta {
   margin-left: auto;
-  min-width: 116px;
-  height: 48px;
+  min-width: 104px;
+  height: 42px;
   border-radius: 24px;
   background: linear-gradient(135deg, #f6d673, #f5be57);
   color: #7b1d15;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -1510,6 +1515,12 @@ button {
 
 .red-hero::after {
   background: linear-gradient(180deg, rgba(150, 20, 18, 0.16), rgba(150, 20, 18, 0.5));
+}
+
+.event-detail-page .image-hero img {
+  object-position: center center;
+  transform: scale(1.55);
+  transform-origin: center center;
 }
 
 .detail-content {
@@ -2559,6 +2570,216 @@ button {
 
 .article-actions span:first-child {
   color: #e52922;
+}
+
+/* Density refinement: keep the app feeling like a modern mini-program, not zoomed UI. */
+.contacts-hero h1,
+.square-hero h1,
+.hometown-hero h1 {
+  font-size: 26px;
+}
+
+.contacts-hero p,
+.square-hero p,
+.hometown-hero p {
+  font-size: 13px;
+}
+
+.big-search,
+.square-search {
+  height: 48px;
+}
+
+.big-search input,
+.square-search input {
+  font-size: 14px;
+}
+
+.chip-row button,
+.square-chip-row button {
+  min-width: 52px;
+  height: 31px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+.directory-section h2 {
+  font-size: 18px;
+}
+
+.alumni-row {
+  grid-template-columns: 50px 1fr 14px;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.alumni-avatar {
+  width: 46px;
+  height: 46px;
+  font-size: 20px;
+}
+
+.alumni-row h3 {
+  font-size: 17px;
+}
+
+.alumni-row p {
+  font-size: 13px;
+}
+
+.masonry-feed {
+  gap: 10px;
+  padding: 14px;
+}
+
+.post-card h2 {
+  font-size: 15px;
+}
+
+.post-card p {
+  font-size: 12px;
+}
+
+.post-price {
+  font-size: 19px;
+}
+
+.hometown-title h2,
+.mine-section h2 {
+  font-size: 17px;
+}
+
+.donation-card h3,
+.project-row h3 {
+  font-size: 16px;
+}
+
+.donation-card p,
+.project-row p {
+  font-size: 12px;
+}
+
+.product-card h3 {
+  font-size: 12px;
+}
+
+.product-card strong {
+  font-size: 15px;
+}
+
+.profile-top h1 {
+  font-size: 24px;
+}
+
+.profile-top p,
+.card-number span,
+.quick-action,
+.settings-row em {
+  font-size: 12px;
+}
+
+.settings-row strong {
+  font-size: 15px;
+}
+
+.detail-header h1 {
+  font-size: 21px;
+}
+
+.detail-content h1,
+.post-detail-content h1,
+.article-body h1 {
+  font-size: 24px;
+}
+
+.detail-content h2,
+.message-block h2,
+.form-section h2,
+.certify-form h2,
+.article-body h2 {
+  font-size: 16px;
+}
+
+.detail-content p,
+.message-block p,
+.post-detail-content p,
+.article-body p,
+.complete-card p,
+.certify-form p {
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.shop-product h2,
+.supply-row h2,
+.donation-list-row h2,
+.campus-news-row h2 {
+  font-size: 15px;
+}
+
+.project-large-card h2,
+.activity-card h2 {
+  font-size: 19px;
+}
+
+.home-greeting h1,
+.banner-copy strong,
+.section-title-row h2,
+.hometown-title h2,
+.contacts-hero h1,
+.square-hero h1,
+.hometown-hero h1,
+.directory-section h2,
+.profile-top h1,
+.detail-header h1,
+.detail-content h1,
+.post-detail-content h1,
+.article-body h1,
+.complete-card h1 {
+  font-weight: 600;
+}
+
+.news-row h3,
+.official-event h2,
+.alumni-row h3,
+.post-card h2,
+.donation-card h3,
+.project-row h3,
+.product-card h3,
+.settings-row strong,
+.shop-product h2,
+.supply-row h2,
+.donation-list-row h2,
+.campus-news-row h2,
+.project-large-card h2,
+.activity-card h2 {
+  font-weight: 600;
+}
+
+.alumni-row h3 {
+  font-size: 16px;
+}
+
+.post-card h2 {
+  font-size: 14px;
+}
+
+.shop-button {
+  height: 52px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.detail-content h1,
+.post-detail-content h1,
+.article-body h1,
+.complete-card h1 {
+  font-size: 22px;
+}
+
+.project-large-card h2,
+.activity-card h2 {
+  font-size: 18px;
 }
 
 @media (max-width: 520px) {
