@@ -28,9 +28,14 @@
 - Removed duplicated square-card tags when the cropped PDF image already includes the tag.
 - Added `aria-label` values to bottom navigation buttons.
 - Shortened the home service gap and hometown gold header height to better match the source rhythm.
+- Second iteration: reduced synthetic heavy font weights by using 400/500/600/700 only.
+- Second iteration: changed the bottom tab bar to the reference interaction where inactive tabs show icon only and the selected tab shows an icon-plus-label capsule at the lower nav height.
+- Second iteration: added the remaining PDF secondary pages as navigable prototype screens, including notifications, product list, project list/detail, donation list/detail, alumni card/detail, publish/my supply, contact info, post detail, settings, login, profile completion, certification, activities, service hub, news list, and article detail.
+- Second iteration: recropped product, activity, project, donation, and article images from the PDF render for local static assets.
 
 **Implementation Checklist**
 - Build passes with `npm run build`.
 - Five bottom tabs switch correctly in-browser.
 - Local PDF-derived assets render from `public/mockup-assets/`.
+- Key secondary-page routes were opened in-browser and screenshots were captured under `/Users/bvtpink/Documents/Codex/2026-07-02/nik/work/screenshots-v2/`.
 - final result: passed
