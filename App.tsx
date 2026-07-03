@@ -160,15 +160,29 @@ const news = [
   { title: '2024本科招生简章正式发布', tag: '招生', meta: '招生办 · 昨天', image: asset('news-campus.jpg') },
 ];
 
+const homeFeed: Array<{
+  title: string;
+  tag: string;
+  unit: string;
+  time: string;
+  image: string;
+  page: SecondaryPage;
+}> = [
+  { title: '新图书馆落成，校友捐赠墙揭幕', tag: '资讯', unit: '校友总会', time: '3天前', image: asset('news-library.jpg'), page: 'articleDetail' },
+  { title: '2024 世界校友返校日开启报名', tag: '活动', unit: '校友总会', time: '10/18 09:00', image: asset('event-return-day.jpg'), page: 'eventDetail' },
+  { title: '我校3项成果获国家科技进步奖', tag: '喜报', unit: '母校资讯中心', time: '2小时前', image: asset('news-award.jpg'), page: 'articleDetail' },
+  { title: '校友企业春季招聘会即将举行', tag: '活动', unit: '就业指导中心', time: '10/25 14:00', image: asset('news-campus.jpg'), page: 'activities' },
+];
+
 function StatusBar({ inverse = false }: { inverse?: boolean }) {
+  return <div className={`status-bar ${inverse ? 'inverse' : ''}`} aria-hidden="true" />;
+}
+
+function MiniProgramCapsule() {
   return (
-    <div className={`status-bar ${inverse ? 'inverse' : ''}`}>
-      <span>9:41</span>
-      <div className="status-icons" aria-hidden="true">
-        <i className="fa-solid fa-signal"></i>
-        <i className="fa-solid fa-wifi"></i>
-        <i className="fa-solid fa-battery-full"></i>
-      </div>
+    <div className="wechat-capsule" aria-hidden="true">
+      <span><i className="fa-solid fa-ellipsis"></i></span>
+      <span><i className="fa-regular fa-circle"></i></span>
     </div>
   );
 }
@@ -227,17 +241,19 @@ function BackHeader({
   );
 }
 
-function HomeTab({ onNavigate }: { onNavigate: NavHandler }) {
+function HomeTab({ onNavigate, onProfile }: { onNavigate: NavHandler; onProfile: () => void }) {
   return (
     <div className="tab-page home-page">
       <div className="home-red-zone">
         <StatusBar inverse />
         <div className="home-greeting">
-          <div className="home-avatar"></div>
-          <div>
-            <p>下午好，欢迎回家</p>
-            <h1>林承宇 · 2015届 <LeafMark /></h1>
-          </div>
+          <button className="home-profile-entry" type="button" onClick={onProfile}>
+            <img className="home-avatar" src={asset('avatar-linchengyu.jpg')} alt="林承宇头像" />
+            <span>
+              <small>下午好，欢迎回家</small>
+              <strong>林承宇 · 2015届 <LeafMark /></strong>
+            </span>
+          </button>
           <button className="message-dot" type="button" aria-label="消息" onClick={() => onNavigate('notifications')}>
             <i className="fa-solid fa-comment-dots"></i>
           </button>
@@ -246,23 +262,19 @@ function HomeTab({ onNavigate }: { onNavigate: NavHandler }) {
         <button className="home-banner" type="button" onClick={() => onNavigate('eventDetail')}>
           <img src={asset('home-hero.jpg')} alt="返校季活动现场" />
           <div className="banner-shade"></div>
-          <div className="banner-dots"><span></span><span></span><span></span></div>
           <div className="banner-copy">
             <span><i className="fa-solid fa-fire"></i> 返校季</span>
             <strong>金秋十月 · 回家看看</strong>
+            <em>带我回家 <i className="fa-solid fa-chevron-right"></i></em>
           </div>
         </button>
       </div>
 
-      <section className="content-section service-section">
-        <div className="section-title-row">
-          <h2><i className="fa-solid fa-wand-magic-sparkles"></i> 校友服务</h2>
-          <button type="button" onClick={() => onNavigate('services')}>带我回家 <i className="fa-solid fa-chevron-right"></i></button>
-        </div>
+      <section className="content-section service-section home-entry-section">
         <div className="service-grid">
           {[
-            ['fa-ticket', '活动报名', 'red', 'activities'],
             ['fa-graduation-cap', '母校资讯', 'red', 'newsList'],
+            ['fa-ticket', '活动报名', 'red', 'activities'],
             ['fa-address-card', '校友卡', 'gold', 'alumniCard'],
             ['fa-border-all', '全部服务', 'gray', 'services'],
           ].map(([icon, label, tone, page]) => (
@@ -274,35 +286,13 @@ function HomeTab({ onNavigate }: { onNavigate: NavHandler }) {
         </div>
       </section>
 
-      <button className="official-event" type="button" onClick={() => onNavigate('eventDetail')}>
-        <div className="event-top">
-          <span><i className="fa-solid fa-star"></i> 官方活动</span>
-          <span><i className="fa-solid fa-clock"></i> 仅剩 6 天</span>
-        </div>
-        <h2>2024 世界校友返校日</h2>
-        <p>万人回归 · 共话母校情 · 寻找当年的TA</p>
-        <div className="event-meta">
-          <span><i className="fa-solid fa-calendar-day"></i> 10/18 09:00</span>
-          <span><i className="fa-solid fa-location-dot"></i> 本部 · 中心广场</span>
-        </div>
-        <div className="event-footer">
-          <div className="avatar-stack"><b></b><b></b><b></b><b></b></div>
-          <strong>328 人已报名</strong>
-          <span className="event-cta">立即报名 <i className="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </button>
-
-      <section className="content-section news-section">
-        <div className="section-title-row">
-          <h2><i className="fa-solid fa-fire"></i> 校园动态</h2>
-          <button type="button" className="plain-more" onClick={() => onNavigate('newsList')}>更多 <i className="fa-solid fa-chevron-right"></i></button>
-        </div>
-        <div className="news-card">
-          {news.map((item) => (
-            <button className="news-row" key={item.title} type="button" onClick={() => onNavigate('articleDetail')}>
+      <section className="content-section news-section home-feed-section">
+        <div className="news-card home-feed-card">
+          {homeFeed.map((item) => (
+            <button className="news-row home-feed-row" key={item.title} type="button" onClick={() => onNavigate(item.page)}>
               <div>
                 <h3>{item.title}</h3>
-                <p><span>{item.tag}</span>{item.meta}</p>
+                <p><span>{item.tag}</span>{item.unit}<em>{item.time}</em></p>
               </div>
               <img src={item.image} alt={item.title} />
             </button>
@@ -1051,7 +1041,7 @@ export default function App() {
     if (activeTab === 'square') return <SquareTab onNavigate={go} />;
     if (activeTab === 'hometown') return <HometownTab onNavigate={go} />;
     if (activeTab === 'mine') return <MineTab onNavigate={go} />;
-    return <HomeTab onNavigate={go} />;
+    return <HomeTab onNavigate={go} onProfile={() => changeTab('mine')} />;
   }, [activePage, activeTab]);
 
   const style = {
@@ -1066,6 +1056,7 @@ export default function App() {
       <div className="phone-shell">
         <div className="phone-screen">
           {screen}
+          <MiniProgramCapsule />
           {!activePage && <NavBar activeTab={activeTab} setActiveTab={changeTab} />}
         </div>
       </div>

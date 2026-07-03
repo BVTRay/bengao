@@ -35,6 +35,9 @@
 - Apple alignment pass: used Apple Human Interface Guidelines as the system reference, with emphasis on system typography, restrained color, grouped backgrounds, material-style translucency, safe touch targets, and clearer visual hierarchy.
 - Apple alignment pass: normalized app-level tokens, bottom navigation, card/list surfaces, search fields, segmented controls, detail headers, primary actions, and secondary-page list/detail layouts.
 - Apple alignment pass: reduced saturated theme colors while preserving the five tab meanings from the user brief.
+- WeChat home pass: removed simulated phone time/status icons and added a global right-side mini-program capsule control.
+- WeChat home pass: rebuilt the home top area as a red gradient with full-width banner imagery, overlaid title, and "带我回家" call-to-action, then removed the old official activity card.
+- WeChat home pass: made the home avatar navigate to the Mine tab, removed the "校友服务" and "校园动态" section headers, and changed the home feed into mixed recent news/activity rows with title, thumbnail, tag, publisher, and time.
 
 **Implementation Checklist**
 - Build passes with `npm run build`.
@@ -42,4 +45,5 @@
 - Local PDF-derived assets render from `public/mockup-assets/`.
 - Key secondary-page routes were opened in-browser and screenshots were captured under `/Users/bvtpink/Documents/Codex/2026-07-02/nik/work/screenshots-v2/`.
 - Apple alignment pass screenshots were captured at 390 x 844 under `/Users/bvtpink/Documents/Codex/2026-07-02/nik/work/screenshots-apple-pass/`, covering all five tabs plus event detail, services, and products.
+- WeChat home pass screenshots were captured at 390 x 844 under `/Users/bvtpink/Documents/Codex/2026-07-02/nik/work/screenshots-wechat-home/`, including the final home page and avatar-to-mine navigation check.
 - final result: passed
