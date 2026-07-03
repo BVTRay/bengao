@@ -38,16 +38,16 @@ const asset = (name: string) => `/mockup-assets/${name}`;
 
 const themes: Record<TabKey, Theme> = {
   home: {
-    accent: '#e52922',
-    accentStrong: '#b11313',
-    accentSoft: '#fff0ee',
+    accent: '#d9342b',
+    accentStrong: '#9f1f19',
+    accentSoft: '#fff1ef',
     navFg: '#ffffff',
     pageClass: 'theme-home',
   },
   contacts: {
-    accent: '#2f8e5f',
-    accentStrong: '#14643f',
-    accentSoft: '#eaf7f0',
+    accent: '#2f8f5b',
+    accentStrong: '#17613c',
+    accentSoft: '#ecf8f1',
     navFg: '#ffffff',
     pageClass: 'theme-contacts',
   },
@@ -59,9 +59,9 @@ const themes: Record<TabKey, Theme> = {
     pageClass: 'theme-square',
   },
   hometown: {
-    accent: '#d5ae46',
-    accentStrong: '#a77a10',
-    accentSoft: '#fff6df',
+    accent: '#c99a2e',
+    accentStrong: '#856113',
+    accentSoft: '#fff7df',
     navFg: '#7a1010',
     pageClass: 'theme-hometown',
   },

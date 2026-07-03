@@ -32,10 +32,14 @@
 - Second iteration: changed the bottom tab bar to the reference interaction where inactive tabs show icon only and the selected tab shows an icon-plus-label capsule at the lower nav height.
 - Second iteration: added the remaining PDF secondary pages as navigable prototype screens, including notifications, product list, project list/detail, donation list/detail, alumni card/detail, publish/my supply, contact info, post detail, settings, login, profile completion, certification, activities, service hub, news list, and article detail.
 - Second iteration: recropped product, activity, project, donation, and article images from the PDF render for local static assets.
+- Apple alignment pass: used Apple Human Interface Guidelines as the system reference, with emphasis on system typography, restrained color, grouped backgrounds, material-style translucency, safe touch targets, and clearer visual hierarchy.
+- Apple alignment pass: normalized app-level tokens, bottom navigation, card/list surfaces, search fields, segmented controls, detail headers, primary actions, and secondary-page list/detail layouts.
+- Apple alignment pass: reduced saturated theme colors while preserving the five tab meanings from the user brief.
 
 **Implementation Checklist**
 - Build passes with `npm run build`.
 - Five bottom tabs switch correctly in-browser.
 - Local PDF-derived assets render from `public/mockup-assets/`.
 - Key secondary-page routes were opened in-browser and screenshots were captured under `/Users/bvtpink/Documents/Codex/2026-07-02/nik/work/screenshots-v2/`.
+- Apple alignment pass screenshots were captured at 390 x 844 under `/Users/bvtpink/Documents/Codex/2026-07-02/nik/work/screenshots-apple-pass/`, covering all five tabs plus event detail, services, and products.
 - final result: passed
