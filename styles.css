@@ -3573,6 +3573,10 @@ button {
   height: 198px;
 }
 
+.image-hero img {
+  object-position: center 56%;
+}
+
 .detail-content,
 .form-section,
 .certify-form,
@@ -3845,7 +3849,7 @@ button {
 }
 
 .home-red-zone {
-  min-height: 340px;
+  min-height: 310px;
   padding-bottom: 0;
   overflow: hidden;
   background:
@@ -3899,17 +3903,20 @@ button {
 }
 
 .message-dot {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   justify-self: end;
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  margin-right: 2px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
   box-shadow: none;
+  font-size: 17px;
 }
 
 .home-banner {
   width: 100%;
-  height: 226px;
+  height: 200px;
   margin: 0;
   border: 0;
   border-radius: 0;
@@ -3918,7 +3925,7 @@ button {
 
 .home-banner img {
   object-position: center top;
-  transform: scale(1.28);
+  transform: scale(1.18);
   transform-origin: center top;
 }
 
@@ -3940,23 +3947,23 @@ button {
 }
 
 .banner-copy strong {
-  margin-top: 10px;
-  font-size: 25px;
-  line-height: 1.08;
+  margin-top: 8px;
+  font-size: 23px;
+  line-height: 1.1;
   font-weight: 600;
 }
 
 .banner-copy em {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  height: 34px;
-  margin-top: 14px;
-  padding: 0 14px;
-  border-radius: 17px;
+  gap: 6px;
+  height: 30px;
+  margin-top: 12px;
+  padding: 0 13px;
+  border-radius: 15px;
   color: #9f1f19;
-  background: rgba(255, 255, 255, 0.92);
-  font-size: 13px;
+  background: rgba(255, 255, 255, 0.93);
+  font-size: 12px;
   font-style: normal;
   font-weight: 600;
 }
@@ -3970,8 +3977,9 @@ button {
 }
 
 .home-entry-section .service-tile {
-  height: 74px;
+  height: 72px;
   background: #fff;
+  border: 1px solid rgba(0,0,0,0.04);
 }
 
 .home-feed-section {
@@ -3985,15 +3993,15 @@ button {
 }
 
 .home-feed-row {
-  min-height: 94px;
-  grid-template-columns: 1fr 84px;
-  padding: 13px 0;
+  min-height: 88px;
+  grid-template-columns: 1fr 80px;
+  padding: 12px 0;
 }
 
 .home-feed-row h3 {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-size: 15px;
-  line-height: 1.35;
+  line-height: 1.36;
 }
 
 .home-feed-row p {
@@ -4006,9 +4014,12 @@ button {
 
 .home-feed-row p span {
   margin-right: 0;
-  padding: 4px 8px;
-  color: #d9342b;
-  background: rgba(217, 52, 43, 0.1);
+  padding: 3px 7px;
+  color: #c42a22;
+  background: rgba(214, 48, 49, 0.07);
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 .home-feed-row p em {
@@ -4017,9 +4028,9 @@ button {
 }
 
 .home-feed-row img {
-  width: 84px;
-  height: 68px;
-  border-radius: 12px;
+  width: 80px;
+  height: 64px;
+  border-radius: 10px;
   object-position: center center;
 }
 
