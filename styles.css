@@ -4034,6 +4034,174 @@ button {
   object-position: center center;
 }
 
+/* ============================================================
+   Themed visual breakthroughs
+   每个 tab 的首屏都加入与主题呼应的装饰语言（红枫 / 山城 /
+   能量晶体 / 暖阳 / 落雪），打破“色块 + 白卡”的规整感，
+   同时把原来的主题色作为主视觉牢牢保留并加强。
+   ============================================================ */
+
+/* 首页 · 红枫热烈 —— 更醇厚的红 + 暖光 + 一枚若隐若现的红枫水印 */
+.home-red-zone {
+  position: relative;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(255, 214, 130, 0.30), transparent 26%),
+    radial-gradient(circle at 8% 96%, rgba(255, 120, 90, 0.20), transparent 42%),
+    linear-gradient(165deg, #740d0a 0%, #c6281f 46%, #ef4a37 100%);
+}
+
+.home-greeting,
+.home-banner {
+  position: relative;
+  z-index: 1;
+}
+
+.home-red-zone::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: -28px;
+  width: 214px;
+  height: 214px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 6 C34 34 18 52 18 74 C18 98 40 112 60 112 C80 112 102 98 102 74 C102 52 86 34 60 6 Z' fill='%23ffffff'/%3E%3Cpath d='M60 16 L60 104' stroke='%23ffffff' stroke-width='3' fill='none' opacity='0.55'/%3E%3C/svg%3E") no-repeat center / contain;
+  opacity: 0.11;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 通讯录 · 山城郁郁葱葱 —— 山脊剪影 + 顶部柔光 */
+.contacts-hero {
+  background:
+    radial-gradient(circle at 12% 14%, rgba(255, 255, 255, 0.12), transparent 34%),
+    linear-gradient(155deg, #0f5232 0%, #2f9e63 70%, #46b975 100%);
+}
+
+.contacts-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 90px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 90' preserveAspectRatio='none'%3E%3Cpath d='M0 90 L64 30 L132 90 Z' fill='%23124e30'/%3E%3Cpath d='M96 90 L196 12 L300 90 Z' fill='%23165d3a' opacity='0.92'/%3E%3Cpath d='M250 90 L332 42 L390 90 Z' fill='%23124e30'/%3E%3C/svg%3E") no-repeat center bottom / 100% 100%;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 广场 · 矿产宝藏 能量满满 —— 黑金能量光晕 + 散落星点 */
+.square-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 16%, rgba(213, 174, 70, 0.22), transparent 30%),
+    radial-gradient(circle at 16% 86%, rgba(110, 190, 255, 0.10), transparent 40%),
+    linear-gradient(150deg, #0a0807 0%, #1d1714 100%);
+}
+
+.square-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.12) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 64% 22%, rgba(213, 174, 70, 0.55) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.14) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 46% 72%, rgba(255, 255, 255, 0.09) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 22% 54%, rgba(213, 174, 70, 0.42) 0 1.5px, transparent 2px);
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.square-hero::after {
+  content: "";
+  position: absolute;
+  top: -70px;
+  right: -90px;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: conic-gradient(from 30deg, rgba(213, 174, 70, 0.18), transparent 25%, rgba(110, 190, 255, 0.12) 50%, transparent 75%, rgba(213, 174, 70, 0.18));
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 助力家乡 · 物产丰饶 —— 右上暖阳光芒 + 更暖的金 */
+.hometown-hero {
+  position: relative;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(255, 255, 255, 0.55), transparent 32%),
+    radial-gradient(circle at 10% 100%, rgba(190, 145, 37, 0.25), transparent 40%),
+    linear-gradient(145deg, #cf9f33 0%, #f3de8c 100%);
+}
+
+.hometown-hero::before {
+  content: "";
+  position: absolute;
+  top: -46px;
+  right: -34px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 18deg at 50% 50%, rgba(255, 255, 255, 0.22) 0deg 5deg, transparent 5deg 16deg);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 我的 · 本溪雪 晶莹圣洁 —— 顶部薄雾 + 更讲究的落雪构图 */
+.mine-page {
+  position: relative;
+}
+
+.mine-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 230px;
+  background: linear-gradient(180deg, rgba(206, 219, 230, 0.55), rgba(241, 243, 245, 0));
+  pointer-events: none;
+  z-index: 0;
+}
+
+.profile-card,
+.quick-actions,
+.mine-section,
+.settings-card {
+  position: relative;
+  z-index: 1;
+}
+
+.snow-layer {
+  z-index: 2;
+}
+
+.snow-layer i:nth-child(2) {
+  position: absolute;
+  left: 28px;
+  top: 150px;
+  font-size: 40px;
+  opacity: 0.7;
+}
+
+.snow-layer i:nth-child(3) {
+  position: absolute;
+  right: 70px;
+  top: 250px;
+  font-size: 30px;
+  opacity: 0.6;
+}
+
+/* 首页内容层次：置顶资讯带一抹红，打破一律白卡的规整 */
+.home-feed-card .news-row:first-child {
+  background: linear-gradient(90deg, rgba(217, 52, 43, 0.07), rgba(217, 52, 43, 0));
+  border-radius: 12px;
+}
+
 @media (max-width: 520px) {
   .app-stage {
     padding: 0;
