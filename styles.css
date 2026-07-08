@@ -204,19 +204,25 @@ img { display: block; max-width: 100%; }
 }
 
 /* ========== 6. HOME — 红枫热烈 ========== */
-.home-page { background: #fff; }
+.home-page {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(228, 0, 43, 0.05), transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(228, 0, 43, 0.04), transparent 50%),
+    #fafbfc;
+  position: relative;
+}
 
-/* 红渐变柔顺衔接：深红 → 亮红 → 淡粉，过渡到 banner 自然 */
+/* 红渐变柔顺衔接：从深红平滑过渡到淡粉，与下方 banner 自然融合 */
 .home-red-zone {
   position: relative;
   min-height: 300px;
-  padding-bottom: 36px;
+  padding-bottom: 28px;
   color: #fff;
   overflow: hidden;
   background:
-    radial-gradient(circle at 84% 8%, rgba(255, 200, 90, 0.4), transparent 30%),
-    radial-gradient(circle at 6% 100%, rgba(255, 96, 70, 0.3), transparent 46%),
-    linear-gradient(180deg, #A4001E 0%, #E4002B 38%, #FF5A5F 72%, #ffd9d6 100%);
+    radial-gradient(circle at 84% 6%, rgba(255, 200, 90, 0.42), transparent 32%),
+    radial-gradient(circle at 8% 95%, rgba(255, 96, 70, 0.32), transparent 50%),
+    linear-gradient(180deg, #A4001E 0%, #C5162C 26%, #E4002B 50%, #FF6369 76%, #FFB1A8 100%);
 }
 
 .home-red-zone::after {
@@ -231,13 +237,13 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
 }
 
-/* Banner 底色从透明渐变到淡红，让 banner 与下方红 zone 衔接更柔顺 */
+/* Banner: 上下都用更柔的渐变蒙版，与 hero 和下方卡片衔接都更自然 */
 .home-banner {
   position: relative;
   z-index: 1;
   width: 100%;
   height: 196px;
-  margin: 4px 0 0;
+  margin: 6px 0 0;
   border-radius: 0;
   overflow: hidden;
   border: 0;
@@ -257,16 +263,17 @@ img { display: block; max-width: 100%; }
 .banner-shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(150, 18, 15, 0.05) 0%, rgba(80, 10, 8, 0.3) 40%, rgba(228, 0, 43, 0.5) 100%);
+  background:
+    linear-gradient(180deg, rgba(228, 0, 43, 0.18) 0%, rgba(150, 18, 15, 0.05) 20%, rgba(60, 5, 4, 0.15) 60%, rgba(228, 0, 43, 0.45) 100%);
 }
 
-/* Greeting: avatar | name+meta | bell (no circle bg) */
+/* Greeting: avatar | name+meta | bell (right-aligned) */
 .home-greeting {
   position: relative;
   z-index: 1;
   padding: 8px 22px 12px;
   display: grid;
-  grid-template-columns: 46px 1fr 30px;
+  grid-template-columns: 46px 1fr auto;
   gap: 12px;
   align-items: center;
 }
@@ -321,11 +328,12 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 6px 16px rgba(80, 11, 8, 0.28);
 }
 
-/* Bell: no circle background, just white icon, left-aligned */
+/* Bell: no circle background, just white icon, right-aligned */
 .message-dot {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   justify-self: end;
+  margin-right: 0;
   border-radius: 0;
   background: transparent;
   border: 0;
@@ -342,8 +350,8 @@ img { display: block; max-width: 100%; }
   position: absolute;
   width: 7px;
   height: 7px;
-  right: 2px;
-  top: 2px;
+  right: 1px;
+  top: 1px;
   border-radius: 50%;
   background: #ffd25b;
   border: 1.5px solid #e4002b;
@@ -440,24 +448,20 @@ img { display: block; max-width: 100%; }
   background: transparent;
 }
 
-/* 4 功能入口 → 与 mine 风格一致的毛玻璃胶囊 */
+/* 4 功能入口 → 每列独立（不再用统一胶囊），每个 icon 是彩色圆角矩形 */
 .home-entry-section .service-grid {
-  display: flex;
-  gap: 6px;
-  padding: 10px 8px;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(20, 20, 40, 0.07);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 0;
+  background: transparent;
   margin-top: 0;
 }
 
 .home-entry-section .service-tile {
   flex: 1;
   height: auto;
-  min-height: 60px;
+  min-height: 78px;
   background: transparent;
   border: 0;
   box-shadow: none;
@@ -466,25 +470,37 @@ img { display: block; max-width: 100%; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   font-size: 12px;
   font-weight: 600;
-  padding: 6px 4px;
-  border-radius: 14px;
-  transition: background 150ms ease;
+  padding: 4px 0;
+  border-radius: 0;
+  transition: transform 150ms ease;
 }
-.home-entry-section .service-tile:active {
-  background: rgba(20, 20, 30, 0.05);
-}
+.home-entry-section .service-tile:active { transform: translateY(2px); }
 
+/* 4 个 icon 各有独立圆角矩形彩色背景 */
 .home-entry-section .service-tile i {
-  width: 30px;
-  height: 30px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
-  border-radius: 0;
-  font-size: 22px;
-  background: transparent;
+  border-radius: 14px;
+  font-size: 20px;
+  background: #FFE7E4;
+  color: #E4002B;
+  box-shadow: 0 4px 10px rgba(228, 0, 43, 0.08);
+}
+
+.home-entry-section .service-tile.gold i {
+  background: #FFF1D2;
+  color: #C8901A;
+  box-shadow: 0 4px 10px rgba(200, 144, 26, 0.1);
+}
+.home-entry-section .service-tile.gray i {
+  background: #E8EDF2;
+  color: #5b6470;
+  box-shadow: 0 4px 10px rgba(91, 100, 112, 0.08);
 }
 
 /* Home feed → 单独大圆角毛玻璃卡片（与 mine 卡片同 token） */
@@ -508,12 +524,20 @@ img { display: block; max-width: 100%; }
 }
 
 .home-feed-section .home-feed-row {
+  display: grid;
+  grid-template-columns: 1fr 80px;
+  gap: 12px;
+  align-items: center;
   min-height: 84px;
-  grid-template-columns: 1fr 72px;
   padding: 12px 0;
   border-bottom: 1px solid #f1ece9;
+  text-align: left;
+  width: 100%;
 }
 .home-feed-section .home-feed-row:last-child { border-bottom: 0; }
+
+/* 让缩略图在右侧且不被拉伸 */
+.home-feed-section .home-feed-row > div { min-width: 0; }
 
 .home-feed-section .home-feed-row h3 {
   margin-bottom: 6px;
@@ -548,9 +572,9 @@ img { display: block; max-width: 100%; }
 }
 
 .home-feed-section .home-feed-row img {
-  width: 72px;
-  height: 60px;
-  border-radius: 10px;
+  width: 80px;
+  height: 64px;
+  border-radius: 12px;
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(20, 20, 40, 0.08);
 }
@@ -594,12 +618,57 @@ img { display: block; max-width: 100%; }
 .service-tile.gold i { background: #FFF1D2; color: #C8901A; }
 .service-tile.gray i { background: #EEF1F5; color: #5b6470; }
 
-/* ========== 7. CONTACTS — 山城郁郁葱葱 ========== */
+.contacts-page .tab-page { position: relative; z-index: 1; }
 .contacts-page {
+  position: relative;
   background:
-    radial-gradient(circle at 100% 0%, rgba(14, 159, 110, 0.06), transparent 40%),
-    radial-gradient(circle at 0% 100%, rgba(14, 159, 110, 0.04), transparent 40%),
-    #fafbfc;
+    /* 绿色动态拟态 blob：漂浮的有机色块 */
+    radial-gradient(ellipse 380px 280px at 12% 70%, rgba(14, 159, 110, 0.18), transparent 70%),
+    radial-gradient(ellipse 320px 220px at 85% 25%, rgba(52, 211, 153, 0.22), transparent 70%),
+    radial-gradient(ellipse 260px 200px at 92% 88%, rgba(6, 78, 59, 0.14), transparent 70%),
+    radial-gradient(ellipse 220px 180px at 8% 12%, rgba(110, 231, 183, 0.18), transparent 70%),
+    linear-gradient(180deg, #f0faf5 0%, #f5fbf7 50%, #ffffff 100%);
+  overflow: hidden;
+}
+
+/* 浮动 blob 装饰 */
+.contacts-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(14, 159, 110, 0.12), transparent 40%),
+    radial-gradient(circle at 75% 30%, rgba(52, 211, 153, 0.10), transparent 40%);
+  animation: blob-float-1 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contacts-page::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 60%;
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(14, 159, 110, 0.10), transparent 60%);
+  animation: blob-float-2 22s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes blob-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -16px) scale(1.05); }
+}
+
+@keyframes blob-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-18px, 22px) scale(0.95); }
 }
 
 .contacts-hero {
@@ -729,27 +798,18 @@ img { display: block; max-width: 100%; }
 .directory-section {
   position: relative;
   z-index: 2;
-  margin-top: -28px;
-  padding: 26px 16px 10px;
-  background: #fff;
-  border-radius: 28px 28px 0 0;
-  box-shadow: 0 -12px 30px rgba(6, 78, 59, 0.16);
-}
-
-.directory-section h2 {
-  margin-bottom: 14px;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.directory-section h2 i {
-  color: #0E9F6E;
-  margin-right: 8px;
+  margin-top: 0;
+  padding: 16px 16px 10px;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .alumni-list-card {
   /* token from glass-card */
-  padding: 4px 14px;
+  padding: 4px 16px;
+  position: relative;
+  z-index: 2;
 }
 
 .alumni-row {
@@ -970,12 +1030,60 @@ img { display: block; max-width: 100%; }
 }
 
 /* ========== 9. HOMETOWN — 物产丰饶暖阳 ========== */
+/* ========== 9. HOMETOWN — 物产丰饶暖阳 ========== */
 .hometown-page {
+  position: relative;
   background:
-    radial-gradient(circle at 100% 0%, rgba(200, 144, 26, 0.06), transparent 40%),
-    radial-gradient(circle at 0% 100%, rgba(200, 144, 26, 0.04), transparent 40%),
-    #fafbfc;
+    /* 金色动态拟态 blob */
+    radial-gradient(ellipse 360px 280px at 12% 22%, rgba(255, 217, 102, 0.28), transparent 70%),
+    radial-gradient(ellipse 320px 240px at 88% 55%, rgba(242, 183, 5, 0.22), transparent 70%),
+    radial-gradient(ellipse 280px 200px at 50% 92%, rgba(200, 144, 26, 0.18), transparent 70%),
+    radial-gradient(ellipse 220px 180px at 5% 75%, rgba(255, 235, 175, 0.32), transparent 70%),
+    linear-gradient(180deg, #fffaee 0%, #fff7e0 50%, #ffffff 100%);
+  overflow: hidden;
 }
+
+/* 金色漂浮 blob 动画 */
+.hometown-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(242, 183, 5, 0.18), transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(255, 217, 102, 0.15), transparent 35%);
+  animation: gold-blob-1 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hometown-page::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70%;
+  height: 50%;
+  background:
+    radial-gradient(ellipse at 70% 70%, rgba(200, 144, 26, 0.16), transparent 60%);
+  animation: gold-blob-2 24s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gold-blob-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(24px, -20px) scale(1.05); }
+}
+
+@keyframes gold-blob-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-22px, 18px) scale(0.95); }
+}
+
+.hometown-page .tab-page { position: relative; z-index: 1; }
 
 .hometown-hero {
   position: relative;
@@ -1020,21 +1128,22 @@ img { display: block; max-width: 100%; }
 }
 .gold-lines span:last-child { width: 24px; }
 
+/* Hometown 分区：去掉大卡片背景，只保留标题+小卡片的简洁排版 */
 .hometown-section {
   position: relative;
   z-index: 2;
-  margin: 16px 16px 14px;
-  padding: 22px 16px 12px;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(20, 20, 40, 0.07);
+  margin: 0 0 20px;
+  padding: 0 16px;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 0;
 }
 
 .hometown-section + .hometown-section {
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
 .hometown-title {
@@ -1072,23 +1181,26 @@ img { display: block; max-width: 100%; }
   white-space: nowrap;
 }
 
+/* 捐款卡 / 项目行：金色玻璃渐变 */
 .donation-card, .project-row {
   display: grid;
   grid-template-columns: 82px 1fr;
   gap: 13px;
   align-items: center;
-  background: rgba(255, 255, 255, 0.72);
+  background: linear-gradient(135deg, rgba(255, 241, 210, 0.85), rgba(255, 217, 102, 0.45));
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(20, 20, 40, 0.07);
+  border: 1px solid rgba(255, 217, 102, 0.4);
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(200, 144, 26, 0.12);
   padding: 13px;
   text-align: left;
   width: 100%;
+  margin-bottom: 10px;
   transition: transform 150ms ease;
 }
 .donation-card:active, .project-row:active { transform: scale(0.99); }
+.donation-card:last-child, .project-row:last-child { margin-bottom: 0; }
 
 .donation-card img, .project-row img {
   width: 82px;
@@ -1112,7 +1224,6 @@ img { display: block; max-width: 100%; }
 
 .project-row {
   grid-template-columns: 82px 1fr 14px;
-  margin-bottom: 12px;
 }
 .project-row:last-child { margin-bottom: 0; }
 
@@ -1135,15 +1246,16 @@ img { display: block; max-width: 100%; }
   gap: 10px;
 }
 
+/* 好物卡：暖色玻璃渐变 */
 .product-card {
   min-width: 0;
   overflow: hidden;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.72);
+  background: linear-gradient(160deg, rgba(255, 251, 240, 0.92), rgba(255, 217, 102, 0.32));
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 8px 24px rgba(20, 20, 40, 0.07);
+  border: 1px solid rgba(255, 217, 102, 0.35);
+  box-shadow: 0 6px 18px rgba(200, 144, 26, 0.1);
   text-align: left;
   transition: transform 150ms ease;
 }

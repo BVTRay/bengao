@@ -323,7 +323,6 @@ function ContactsTab({ onNavigate }: { onNavigate: NavHandler }) {
       </header>
 
       <section className="directory-section">
-        <h2><i className="fa-solid fa-users"></i> 全部校友</h2>
         <div className="alumni-list-card">
           {alumni.map((person) => (
             <button className="alumni-row" key={person.name} type="button" onClick={() => onNavigate('alumniDetail')}>
