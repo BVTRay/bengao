@@ -1,12 +1,17 @@
 /* ============================================================
-   本高校友汇 · 微信小程序视觉原型 — 完整重设计
+   本高校友汇 · 微信小程序视觉原型 — 重设计 v4
    ------------------------------------------------------------
-   设计原则：
-   1. 五主题色作为每页主视觉（红枫/山城绿/矿产黑金/暖阳金/本溪雪）
-   2. 白色圆角面板压住主题 hero 的现代小程序布局语言
-   3. 浮动玻璃胶囊底部导航
-   4. 统一字阶/字重/间距/圆角/阴影体系
-   5. 390×844 手机视口为重点检查尺寸
+   优化基线：v3 完整重设计
+   本次重点（按用户 9 项反馈）：
+   1. 家乡页取消"前往小程序选购"按钮
+   2. 首页消息按钮：取消圆形背景、左移、改为小铃铛
+   3. 首页用户名（林承宇 20px）大于届别（2015届 12px）
+   4. 首页红渐变柔顺衔接（深红→亮红→淡粉）
+   5. 首页/我的 4 个功能入口 → 半透明毛玻璃胶囊
+   6. 首页 feed 列表 → 单独大卡片
+   7. 我的页设置列表 → 毛玻璃胶囊卡片
+   8. 通讯录/广场筛选标签与下方卡片间距加大
+   9. 卡片标题字号缩小（17px 800 → 15px 600）
    ============================================================ */
 
 /* ========== 1. Reset & Base ========== */
@@ -27,6 +32,10 @@
   --shadow-card: 0 8px 24px rgba(20, 20, 40, 0.07);
   --shadow-lift: 0 14px 36px rgba(20, 20, 40, 0.12);
   --shadow-hero: 0 -10px 30px rgba(0, 0, 0, 0.12);
+  /* Glassmorphism tokens */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.5);
 }
 
 html, body, #root { height: 100%; }
@@ -184,9 +193,20 @@ img { display: block; max-width: 100%; }
 
 .content-section { padding: 0 16px; }
 
+/* ========== Shared: glass card ========== */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+
 /* ========== 6. HOME — 红枫热烈 ========== */
 .home-page { background: #fff; }
 
+/* 红渐变柔顺衔接：深红 → 亮红 → 淡粉，过渡到 banner 自然 */
 .home-red-zone {
   position: relative;
   min-height: 300px;
@@ -195,8 +215,8 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
   background:
     radial-gradient(circle at 84% 8%, rgba(255, 200, 90, 0.4), transparent 30%),
-    radial-gradient(circle at 6% 100%, rgba(255, 96, 70, 0.35), transparent 46%),
-    linear-gradient(162deg, #A4001E 0%, #E4002B 46%, #FF5A5F 100%);
+    radial-gradient(circle at 6% 100%, rgba(255, 96, 70, 0.3), transparent 46%),
+    linear-gradient(180deg, #A4001E 0%, #E4002B 38%, #FF5A5F 72%, #ffd9d6 100%);
 }
 
 .home-red-zone::after {
@@ -211,81 +231,7 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
 }
 
-.home-greeting {
-  position: relative;
-  z-index: 1;
-  padding: 8px 22px 12px;
-  display: grid;
-  grid-template-columns: 46px 1fr 40px;
-  gap: 12px;
-  align-items: center;
-}
-
-.home-profile-entry {
-  min-width: 0;
-  display: grid;
-  grid-template-columns: 46px 1fr;
-  gap: 11px;
-  align-items: center;
-  background: transparent;
-  text-align: left;
-}
-
-.home-profile-entry small {
-  display: block;
-  margin-bottom: 3px;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.home-profile-entry strong {
-  display: block;
-  color: #fff;
-  font-size: 17px;
-  line-height: 1.12;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.home-avatar {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2.5px solid rgba(255, 230, 166, 0.95);
-  box-shadow: 0 6px 16px rgba(80, 11, 8, 0.28);
-}
-
-.message-dot {
-  width: 40px;
-  height: 40px;
-  justify-self: end;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #fff;
-  font-size: 18px;
-  display: grid;
-  place-items: center;
-  position: relative;
-}
-
-.message-dot::after {
-  content: "";
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  right: 7px;
-  top: 7px;
-  border-radius: 50%;
-  background: #ffd25b;
-  border: 2px solid #e4002b;
-}
-
-/* Full-bleed banner */
+/* Banner 底色从透明渐变到淡红，让 banner 与下方红 zone 衔接更柔顺 */
 .home-banner {
   position: relative;
   z-index: 1;
@@ -311,7 +257,96 @@ img { display: block; max-width: 100%; }
 .banner-shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(150, 18, 15, 0.05) 0%, rgba(80, 10, 8, 0.3) 40%, rgba(10, 5, 4, 0.66) 100%);
+  background: linear-gradient(180deg, rgba(150, 18, 15, 0.05) 0%, rgba(80, 10, 8, 0.3) 40%, rgba(228, 0, 43, 0.5) 100%);
+}
+
+/* Greeting: avatar | name+meta | bell (no circle bg) */
+.home-greeting {
+  position: relative;
+  z-index: 1;
+  padding: 8px 22px 12px;
+  display: grid;
+  grid-template-columns: 46px 1fr 30px;
+  gap: 12px;
+  align-items: center;
+}
+
+.home-profile-entry {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 11px;
+  align-items: center;
+  background: transparent;
+  text-align: left;
+}
+
+.home-profile-entry small {
+  display: block;
+  margin-bottom: 3px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* 林承宇 20px 加粗，2015届 12px 较细 */
+.home-profile-entry strong {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-profile-entry strong em {
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.78);
+  letter-spacing: 0;
+}
+
+.home-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid rgba(255, 230, 166, 0.95);
+  box-shadow: 0 6px 16px rgba(80, 11, 8, 0.28);
+}
+
+/* Bell: no circle background, just white icon, left-aligned */
+.message-dot {
+  width: 30px;
+  height: 30px;
+  justify-self: end;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  box-shadow: none;
+}
+
+.message-dot::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  right: 2px;
+  top: 2px;
+  border-radius: 50%;
+  background: #ffd25b;
+  border: 1.5px solid #e4002b;
 }
 
 .banner-copy {
@@ -358,24 +393,132 @@ img { display: block; max-width: 100%; }
   font-weight: 700;
 }
 
-/* White panel overlapping red hero */
+/* White panel overlapping red hero (smaller margin so it doesn't feel detached) */
 .home-entry-section {
   position: relative;
   z-index: 2;
   margin-top: -26px;
-  padding: 22px 16px 4px;
+  padding: 18px 16px 4px;
   background: #fff;
   border-radius: 28px 28px 0 0;
   box-shadow: 0 -12px 30px rgba(120, 10, 8, 0.14);
 }
 
+/* 4 功能入口 → 半透明毛玻璃胶囊 */
+.home-entry-section .service-grid {
+  display: flex;
+  gap: 8px;
+  padding: 10px 8px;
+  background: rgba(228, 0, 43, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(228, 0, 43, 0.1);
+  border-radius: 18px;
+  margin-top: 0;
+}
+
+.home-entry-section .service-tile {
+  flex: 1;
+  height: auto;
+  min-height: 60px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 4px;
+  border-radius: 12px;
+  transition: background 150ms ease;
+}
+.home-entry-section .service-tile:active {
+  background: rgba(228, 0, 43, 0.08);
+}
+
+.home-entry-section .service-tile i {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 0;
+  font-size: 22px;
+  background: transparent;
+}
+
+/* Home feed → 单独大卡片 */
 .home-feed-section {
   position: relative;
   z-index: 2;
   background: #fff;
-  padding-top: 4px;
+  padding: 8px 16px 0;
 }
 
+.home-feed-section .news-card {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  margin-top: 12px;
+  padding: 6px 14px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.home-feed-section .home-feed-row {
+  min-height: 84px;
+  grid-template-columns: 1fr 72px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1ece9;
+}
+.home-feed-section .home-feed-row:last-child { border-bottom: 0; }
+
+.home-feed-section .home-feed-row h3 {
+  margin-bottom: 6px;
+  font-size: 14.5px;
+  line-height: 1.38;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.home-feed-section .home-feed-row p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  color: var(--tertiary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.home-feed-section .home-feed-row p span {
+  padding: 2px 7px;
+  color: #fff;
+  background: #E4002B;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.home-feed-section .home-feed-row p em {
+  color: var(--tertiary);
+  font-style: normal;
+}
+
+.home-feed-section .home-feed-row img {
+  width: 72px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(20, 20, 40, 0.08);
+}
+
+/* Default service-tile (used on detail pages) */
 .service-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -413,67 +556,6 @@ img { display: block; max-width: 100%; }
 .service-tile.red i { background: #FFE7E4; color: #E4002B; }
 .service-tile.gold i { background: #FFF1D2; color: #C8901A; }
 .service-tile.gray i { background: #EEF1F5; color: #5b6470; }
-
-/* Feed list */
-.news-card {
-  margin-top: 14px;
-  background: transparent;
-  border-radius: 0;
-  padding: 0 4px;
-  box-shadow: none;
-}
-
-.news-row, .home-feed-row {
-  display: grid;
-  grid-template-columns: 1fr 82px;
-  gap: 12px;
-  align-items: center;
-  padding: 13px 0;
-  border-bottom: 1px solid #f1ece9;
-  text-align: left;
-  width: 100%;
-}
-.news-row:last-child, .home-feed-row:last-child { border-bottom: 0; }
-
-.news-row h3, .home-feed-row h3 {
-  margin-bottom: 8px;
-  font-size: 15px;
-  line-height: 1.38;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.news-row p, .home-feed-row p {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
-  color: var(--tertiary);
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.news-row p span, .home-feed-row p span {
-  padding: 2px 7px;
-  color: #fff;
-  background: #E4002B;
-  border-radius: 5px;
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.home-feed-row p em {
-  color: var(--tertiary);
-  font-style: normal;
-}
-
-.news-row img, .home-feed-row img {
-  width: 82px;
-  height: 64px;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 4px 12px rgba(20, 20, 40, 0.08);
-}
 
 /* ========== 7. CONTACTS — 山城郁郁葱葱 ========== */
 .contacts-page { background: #fff; }
@@ -515,10 +597,10 @@ img { display: block; max-width: 100%; }
 .square-hero h1,
 .hometown-hero h1 {
   margin: 22px 22px 8px;
-  font-size: 30px;
+  font-size: 28px;
   line-height: 1.3;
   font-weight: 800;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
   position: relative;
   z-index: 1;
   color: #ffffff;
@@ -582,6 +664,7 @@ img { display: block; max-width: 100%; }
   padding: 0 18px;
   position: relative;
   z-index: 1;
+  margin-bottom: 14px;
 }
 
 .chip-row button, .square-chip-row button {
@@ -613,8 +696,8 @@ img { display: block; max-width: 100%; }
 
 .directory-section h2 {
   margin-bottom: 14px;
-  font-size: 20px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .directory-section h2 i {
@@ -670,22 +753,23 @@ img { display: block; max-width: 100%; }
 
 .alumni-row h3 {
   margin-bottom: 3px;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .alumni-row h3 em {
   font-style: normal;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--tertiary);
   margin-left: 6px;
+  font-weight: 500;
 }
 
 .alumni-row p {
   margin-bottom: 2px;
   color: #6e7d76;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .alumni-row small {
@@ -790,16 +874,16 @@ img { display: block; max-width: 100%; }
 
 .post-card h2 {
   margin: 10px 0 6px;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.3;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ink);
 }
 
 .post-card p {
   margin-bottom: 10px;
   color: var(--sub);
-  font-size: 13px;
+  font-size: 12.5px;
   line-height: 1.4;
   font-weight: 500;
 }
@@ -808,7 +892,7 @@ img { display: block; max-width: 100%; }
   display: block;
   margin-bottom: 8px;
   color: #E4002B;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
 }
 
@@ -917,22 +1001,23 @@ img { display: block; max-width: 100%; }
 }
 
 .hometown-title h2 {
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 9px;
+  color: var(--ink);
 }
 
 .hometown-title h2 i {
-  width: 34px;
-  height: 34px;
-  border-radius: 11px;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
   background: #FFF1D2;
   color: #C8901A;
   display: grid;
   place-items: center;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .hometown-title button {
@@ -968,14 +1053,14 @@ img { display: block; max-width: 100%; }
 
 .donation-card h3, .project-row h3 {
   margin-bottom: 7px;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .donation-card p, .project-row p {
   color: #9a8350;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .project-row {
@@ -1024,7 +1109,7 @@ img { display: block; max-width: 100%; }
 .product-card h3 {
   margin: 9px 9px 3px;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1036,18 +1121,6 @@ img { display: block; max-width: 100%; }
   color: #E4002B;
   font-size: 16px;
   font-weight: 800;
-}
-
-.shop-button {
-  width: 100%;
-  height: 50px;
-  margin-top: 14px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #F2B705, #FFD966);
-  color: #5a4410;
-  font-size: 16px;
-  font-weight: 800;
-  box-shadow: 0 8px 20px rgba(200, 144, 26, 0.25);
 }
 
 /* ========== 10. MINE — 本溪雪晶莹圣洁 ========== */
@@ -1166,76 +1239,89 @@ img { display: block; max-width: 100%; }
 .card-number span { display: flex; align-items: center; gap: 6px; }
 .card-number em { color: var(--ink); font-style: normal; font-weight: 700; display: flex; align-items: center; gap: 4px; }
 
+/* 4 个快捷入口 → 半透明毛玻璃胶囊 */
 .quick-actions {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  display: flex;
+  gap: 8px;
   margin: 14px 16px 0;
+  padding: 10px 8px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
 }
 
 .quick-action {
-  height: 74px;
-  border-radius: 18px;
-  background: #fff;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-card);
+  flex: 1;
+  height: auto;
+  min-height: 60px;
+  border-radius: 12px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 6px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ink);
   position: relative;
-  transition: transform 150ms ease;
+  padding: 6px 4px;
+  transition: background 150ms ease;
 }
-.quick-action:active { transform: translateY(2px); }
+.quick-action:active { background: rgba(0, 0, 0, 0.04); }
 
 .quick-action span {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 0;
   display: grid;
   place-items: center;
-  font-size: 17px;
+  font-size: 22px;
+  background: transparent;
 }
 
-.quick-action.red span { background: #FFE7E4; color: #E4002B; }
-.quick-action.gold span { background: #FFF1D2; color: #C8901A; }
-.quick-action.green span { background: #E2F5EC; color: #0E9F6E; }
+.quick-action.red span { color: #E4002B; }
+.quick-action.gold span { color: #C8901A; }
+.quick-action.green span { color: #0E9F6E; }
 
 .quick-action.dot::after {
   content: "";
   position: absolute;
-  top: 12px;
-  right: 18px;
-  width: 8px;
-  height: 8px;
+  top: 8px;
+  right: 14px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #E4002B;
-  border: 2px solid #fff;
+  border: 1.5px solid var(--glass-bg-strong);
 }
 
 .mine-section {
   position: relative;
   z-index: 1;
-  margin: 18px 16px 0;
+  margin: 14px 16px 0;
 }
 
 .mine-section h2 {
-  font-size: 17px;
-  font-weight: 800;
-  margin: 4px 2px 12px;
-  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 4px 2px 10px;
+  color: var(--sub);
 }
 
+/* 设置列表 → 毛玻璃胶囊大卡片 */
 .settings-card {
-  background: #fff;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-radius: 20px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-card);
   overflow: hidden;
 }
@@ -1246,12 +1332,13 @@ img { display: block; max-width: 100%; }
   gap: 12px;
   align-items: center;
   padding: 14px 16px;
-  border-bottom: 1px solid #f1f3f5;
+  border-bottom: 1px solid rgba(20, 20, 30, 0.05);
   font-size: 15px;
   font-weight: 600;
   color: var(--ink);
   text-align: left;
   width: 100%;
+  background: transparent;
 }
 .settings-row:last-child { border-bottom: 0; }
 
@@ -1262,7 +1349,7 @@ img { display: block; max-width: 100%; }
   display: grid;
   place-items: center;
   font-size: 16px;
-  background: #EEF1F5;
+  background: rgba(20, 20, 30, 0.04);
   color: #5b6470;
 }
 
@@ -1274,7 +1361,7 @@ img { display: block; max-width: 100%; }
 .logout-line {
   display: block;
   width: 100%;
-  margin-top: 16px;
+  margin-top: 14px;
   padding: 14px;
   border-radius: 16px;
   background: #fff;
@@ -1286,7 +1373,7 @@ img { display: block; max-width: 100%; }
   text-align: center;
 }
 
-/* ========== 11. DETAIL PAGES (Shared) ========== */
+/* ========== 11. Detail Pages (Shared) ========== */
 .detail-page {
   height: 100%;
   overflow-y: auto;
@@ -1330,17 +1417,15 @@ img { display: block; max-width: 100%; }
   font-size: 16px;
 }
 
-.detail-header.inverse button,
 .image-hero > button,
-.auth-back,
-.detail-page .auth-back {
+.auth-back {
   background: rgba(255, 255, 255, 0.95);
   color: #1a1a1f;
 }
 
 .detail-header h1 {
-  font-size: 20px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .image-hero {
@@ -1368,8 +1453,6 @@ img { display: block; max-width: 100%; }
   left: 16px;
   top: 56px;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
 }
 
 .red-hero::after {
@@ -1395,7 +1478,7 @@ img { display: block; max-width: 100%; }
 
 .detail-content h1 {
   margin: 10px 0 8px;
-  font-size: 26px;
+  font-size: 24px;
   line-height: 1.18;
   font-weight: 800;
   letter-spacing: -0.3px;
@@ -1407,8 +1490,8 @@ img { display: block; max-width: 100%; }
 .form-section h2,
 .certify-form h2 {
   margin: 22px 0 10px;
-  font-size: 17px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 700;
   color: var(--ink);
 }
 
@@ -1549,7 +1632,7 @@ img { display: block; max-width: 100%; }
 
 .inline-action { position: static; width: 100%; margin-top: 14px; }
 
-/* ========== 12. SECONDARY PAGES ========== */
+/* ========== 12. Secondary Pages ========== */
 
 /* Notifications */
 .notice-list { padding: 16px; }
@@ -1665,7 +1748,7 @@ img { display: block; max-width: 100%; }
 .shop-product h2 {
   margin: 10px 10px 6px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.3;
 }
 
@@ -1714,8 +1797,8 @@ img { display: block; max-width: 100%; }
 
 .project-large-card h2 {
   margin: 10px 0 6px;
-  font-size: 17px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .project-large-card p {
@@ -2162,8 +2245,8 @@ img { display: block; max-width: 100%; }
 }
 
 .settings-page-list h2 {
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--sub);
   margin: 0 4px 10px;
 }
@@ -2211,7 +2294,7 @@ img { display: block; max-width: 100%; }
   object-fit: cover;
 }
 
-.donation-list-row h2 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.donation-list-row h2 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
 .donation-list-row p { color: var(--sub); font-size: 13px; font-weight: 500; }
 
 /* Alumni detail */
@@ -2234,7 +2317,7 @@ img { display: block; max-width: 100%; }
 }
 
 .alumni-profile h1 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   margin-bottom: 4px;
 }
@@ -2360,7 +2443,7 @@ img { display: block; max-width: 100%; }
 
 .campus-news-row h2 {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.35;
   margin-bottom: 8px;
 }
@@ -2395,8 +2478,8 @@ img { display: block; max-width: 100%; }
 .service-hub > div { margin-bottom: 24px; }
 
 .service-hub h2 {
-  font-size: 17px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 600;
   margin-bottom: 12px;
   color: var(--ink);
 }
@@ -2472,8 +2555,8 @@ img { display: block; max-width: 100%; }
 
 .activity-card h2 {
   padding: 14px 16px 4px;
-  font-size: 17px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .activity-card p {
@@ -2539,7 +2622,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 360px) {
   .contacts-hero h1,
   .square-hero h1,
-  .hometown-hero h1 { font-size: 25px; }
+  .hometown-hero h1 { font-size: 24px; }
   .nav-item { font-size: 13px; }
   .service-tile { font-size: 11px; }
 }

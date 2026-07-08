@@ -251,11 +251,11 @@ function HomeTab({ onNavigate, onProfile }: { onNavigate: NavHandler; onProfile:
             <img className="home-avatar" src={asset('avatar-linchengyu.jpg')} alt="林承宇头像" />
             <span>
               <small>下午好，欢迎回家</small>
-              <strong>林承宇 · 2015届 <LeafMark /></strong>
+              <strong>林承宇 <em>2015届 <LeafMark /></em></strong>
             </span>
           </button>
           <button className="message-dot" type="button" aria-label="消息" onClick={() => onNavigate('notifications')}>
-            <i className="fa-solid fa-comment-dots"></i>
+            <i className="fa-solid fa-bell"></i>
           </button>
         </div>
 
@@ -427,7 +427,6 @@ function HometownTab({ onNavigate }: { onNavigate: NavHandler }) {
             </button>
           ))}
         </div>
-        <button className="shop-button" type="button" onClick={() => onNavigate('products')}><i className="fa-solid fa-arrow-up-right-from-square"></i> 前往小程序选购</button>
       </section>
 
       <section className="hometown-section projects-section">
