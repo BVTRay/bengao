@@ -62,14 +62,14 @@ const themes: Record<TabKey, Theme> = {
     accent: '#c99a2e',
     accentStrong: '#856113',
     accentSoft: '#fff7df',
-    navFg: '#7a1010',
+    navFg: '#ffffff',
     pageClass: 'theme-hometown',
   },
   mine: {
     accent: '#111111',
     accentStrong: '#111111',
     accentSoft: '#f3f4f5',
-    navFg: '#111111',
+    navFg: '#ffffff',
     pageClass: 'theme-mine',
   },
 };
