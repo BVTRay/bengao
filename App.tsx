@@ -144,9 +144,13 @@ const products = [
   { title: '高山云雾绿茶', price: '¥88', sold: '已售 690', image: asset('product-tea.jpg') },
   { title: '农家手工挂面', price: '¥29', sold: '已售 1.5k', image: asset('product-noodles.jpg') },
   { title: '五常稻花香米 5kg', price: '¥75', sold: '已售 980', image: asset('product-rice.jpg') },
+  { title: '野生松子 250g', price: '¥58', sold: '已售 720', image: asset('product-honey.jpg') },
+  { title: '手工红薯粉条', price: '¥35', sold: '已售 1.1k', image: asset('product-sugar.jpg') },
+  { title: '有机杂粮礼盒', price: '¥98', sold: '已售 560', image: asset('product-mushroom.jpg') },
+  { title: '柴火腊肉 500g', price: '¥66', sold: '已售 890', image: asset('product-tea.jpg') },
 ];
 
-const hometownProducts = products.slice(0, 3);
+const hometownProducts = products;
 
 const projects = [
   { title: '智慧农业产业园', tag: '农业', meta: '拟引资 500-1000万', extra: '年化 12%', image: asset('project-agri.jpg') },
@@ -265,8 +269,8 @@ function HomeTab({ onNavigate, onProfile }: { onNavigate: NavHandler; onProfile:
           <div className="banner-copy">
             <span><i className="fa-solid fa-fire"></i> 返校季</span>
             <strong>金秋十月 · 回家看看</strong>
-            <em>带我回家 <i className="fa-solid fa-chevron-right"></i></em>
           </div>
+          <button className="banner-cta" type="button" onClick={(e) => { e.stopPropagation(); onNavigate('eventDetail'); }}>带我回家 <i className="fa-solid fa-chevron-right"></i></button>
         </button>
       </div>
 

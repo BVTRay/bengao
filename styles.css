@@ -216,7 +216,7 @@ img { display: block; max-width: 100%; }
 .home-red-zone {
   position: relative;
   min-height: 300px;
-  padding-bottom: 28px;
+  padding-bottom: 0;
   color: #fff;
   overflow: hidden;
   background:
@@ -237,13 +237,13 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
 }
 
-/* Banner: 上下都用更柔的渐变蒙版，与 hero 和下方卡片衔接都更自然 */
+/* Banner: 紧贴 hero 下方，充满宽度 */
 .home-banner {
   position: relative;
   z-index: 1;
   width: 100%;
-  height: 196px;
-  margin: 6px 0 0;
+  height: 200px;
+  margin: 0;
   border-radius: 0;
   overflow: hidden;
   border: 0;
@@ -386,12 +386,37 @@ img { display: block; max-width: 100%; }
   letter-spacing: -0.3px;
 }
 
-.banner-copy em {
+/* "带我回家"按钮：绝对定位到 banner 右下角 */
+.banner-cta {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 3;
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  height: 31px;
-  margin-top: 12px;
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 17px;
+  color: #A4001E;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  border: 0;
+  cursor: pointer;
+}
+
+.banner-cta i { font-size: 11px; }
+
+.banner-copy em {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
   padding: 0 14px;
   border-radius: 16px;
   color: #A4001E;
@@ -399,6 +424,7 @@ img { display: block; max-width: 100%; }
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* ============================================================
@@ -449,12 +475,18 @@ img { display: block; max-width: 100%; }
 }
 
 /* 4 功能入口 → 每列独立（不再用统一胶囊），每个 icon 是彩色圆角矩形 */
+/* 4 功能入口 → 整体圆角毛玻璃背景 */
 .home-entry-section .service-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  padding: 0;
-  background: transparent;
+  gap: 4px;
+  padding: 12px 8px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(20, 20, 40, 0.07);
   margin-top: 0;
 }
 
@@ -1128,11 +1160,11 @@ img { display: block; max-width: 100%; }
 }
 .gold-lines span:last-child { width: 24px; }
 
-/* Hometown 分区：去掉大卡片背景，只保留标题+小卡片的简洁排版 */
+/* Hometown 分区：去掉大卡片背景，紧凑排版 */
 .hometown-section {
   position: relative;
   z-index: 2;
-  margin: 0 0 20px;
+  margin: 0 0 14px;
   padding: 0 16px;
   background: transparent;
   border-radius: 0;
@@ -1142,8 +1174,13 @@ img { display: block; max-width: 100%; }
   border: 0;
 }
 
+/* 第一个 section 紧贴 hero 下方 */
+.hometown-section:first-of-type {
+  margin-top: 10px;
+}
+
 .hometown-section + .hometown-section {
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .hometown-title {
@@ -1151,7 +1188,7 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 
 .hometown-title h2 {
@@ -1181,18 +1218,13 @@ img { display: block; max-width: 100%; }
   white-space: nowrap;
 }
 
-/* 捐款卡 / 项目行：金色玻璃渐变 */
+/* 捐款卡 / 项目行：统一白色毛玻璃（与 alumni-list-card 一致） */
 .donation-card, .project-row {
   display: grid;
   grid-template-columns: 82px 1fr;
   gap: 13px;
   align-items: center;
-  background: linear-gradient(135deg, rgba(255, 241, 210, 0.85), rgba(255, 217, 102, 0.45));
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 217, 102, 0.4);
-  border-radius: 18px;
-  box-shadow: 0 6px 18px rgba(200, 144, 26, 0.12);
+  /* token from glass-card */
   padding: 13px;
   text-align: left;
   width: 100%;
@@ -1240,22 +1272,28 @@ img { display: block; max-width: 100%; }
 
 .project-row > i { color: var(--tertiary); font-size: 13px; }
 
+/* 好物横向滑动列表 */
 .product-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 2px 0 4px;
+  -webkit-overflow-scrolling: touch;
+}
+.product-strip::-webkit-scrollbar { display: none; }
+
+.product-strip .product-card {
+  flex-shrink: 0;
+  width: 130px;
 }
 
-/* 好物卡：暖色玻璃渐变 */
+/* 好物卡：统一白色毛玻璃（与 alumni-list-card 一致） */
 .product-card {
   min-width: 0;
   overflow: hidden;
   border-radius: 16px;
-  background: linear-gradient(160deg, rgba(255, 251, 240, 0.92), rgba(255, 217, 102, 0.32));
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 217, 102, 0.35);
-  box-shadow: 0 6px 18px rgba(200, 144, 26, 0.1);
+  /* token from glass-card */
   text-align: left;
   transition: transform 150ms ease;
 }
@@ -1263,7 +1301,7 @@ img { display: block; max-width: 100%; }
 
 .product-card img {
   width: 100%;
-  height: 82px;
+  height: 100px;
   object-fit: cover;
 }
 
