@@ -1,0 +1,1074 @@
+/* ============================================================
+   bengao · 整体视觉重设计 (v2)
+   ------------------------------------------------------------
+   设计目标：在「逻辑结构不变」的前提下，把原本偏保守的
+   模板感界面，重做成更大胆、更有品牌张力的微信小程序原型。
+
+   核心手法：
+   1. 每个 tab 顶部用「全幅主题 hero + 白色圆角面板下压重叠」
+      的现代小程序布局语言，取代原来的「色块+白卡」平铺。
+   2. 底部导航改为浮动玻璃胶囊，激活项用主题色实心药丸。
+   3. 更大字阶 / 更强字重对比 / 更大圆角 / 分层彩调阴影。
+   4. 五主题色（红枫 / 山城绿 / 矿产黑金 / 暖阳金 / 本溪雪）
+      不仅保留，且作为主视觉进一步张扬。
+
+   实现方式：本文件在 styles.css 之后引入，靠后层叠顺序
+   生效；对需要压过原更高特异性的规则使用 !important。
+   不改动任何 JSX / 组件结构。
+   ============================================================ */
+
+:root {
+  --r-primary: #E4002B;
+  --r-deep: #A4001E;
+  --r-light: #FF5A5F;
+  --g-primary: #0E9F6E;
+  --g-deep: #066B47;
+  --g-light: #34D399;
+  --s-gold: #E0A93B;
+  --s-gold-deep: #B8860B;
+  --h-gold: #F2B705;
+  --h-gold-deep: #C8901A;
+  --ice: #2F6DB0;
+  --ice-light: #7FB5D6;
+  --ink: #18181d;
+  --sub: #6b6b73;
+  --panel: #ffffff;
+  --line: rgba(20, 20, 30, 0.07);
+  --shadow-card: 0 14px 34px rgba(20, 20, 40, 0.08);
+  --shadow-lift: 0 18px 44px rgba(20, 20, 40, 0.14);
+}
+
+/* 让整体观感更现代：关闭全局硬编码的暖白，统一卡片底色 */
+.app-stage {
+  background: linear-gradient(135deg, #eef1f6, #e6eaf1) !important;
+}
+
+/* ---------- 通用：更利落的滚动与字距 ---------- */
+.tab-page {
+  padding-bottom: 120px !important;
+}
+
+/* ============================================================
+   底部导航：浮动玻璃胶囊
+   ============================================================ */
+.bottom-nav {
+  left: 12px !important;
+  right: 12px !important;
+  bottom: max(16px, env(safe-area-inset-bottom)) !important;
+  height: 62px !important;
+  padding: 7px 8px !important;
+  border-radius: 31px !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 16px 40px rgba(15, 18, 30, 0.22) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+}
+
+.nav-item {
+  height: 48px !important;
+  border-radius: 24px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #9a958e !important;
+  gap: 7px !important;
+}
+
+.nav-item i {
+  font-size: 21px !important;
+}
+
+.nav-item.active {
+  flex: 1.9 1 0 !important;
+  background: var(--accent) !important;
+  color: var(--nav-active-fg) !important;
+  box-shadow: 0 12px 26px color-mix(in srgb, var(--accent) 42%, transparent) !important;
+}
+
+.theme-mine .nav-item.active {
+  background: linear-gradient(135deg, #2F6DB0, #7FB5D6) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 12px 26px rgba(47, 109, 176, 0.4) !important;
+}
+
+/* ============================================================
+   首页 · 红枫热烈
+   ============================================================ */
+.home-page {
+  background: #ffffff !important;
+}
+
+.home-red-zone {
+  position: relative;
+  min-height: 300px !important;
+  padding-bottom: 40px !important;
+  color: #fff;
+  background:
+    radial-gradient(circle at 84% 8%, rgba(255, 196, 92, 0.42), transparent 30%),
+    radial-gradient(circle at 6% 100%, rgba(255, 96, 70, 0.35), transparent 46%),
+    linear-gradient(162deg, #A4001E 0%, #E4002B 46%, #FF5A5F 100%) !important;
+  overflow: hidden;
+}
+
+.home-red-zone::after {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: -36px;
+  width: 240px;
+  height: 240px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 6 C34 34 18 52 18 74 C18 98 40 112 60 112 C80 112 102 98 102 74 C102 52 86 34 60 6 Z' fill='%23ffffff'/%3E%3Cpath d='M60 16 L60 104' stroke='%23ffffff' stroke-width='3' fill='none' opacity='0.6'/%3E%3C/svg%3E") no-repeat center / contain;
+  opacity: 0.14 !important;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.home-greeting {
+  position: relative;
+  z-index: 1;
+  padding: 8px 22px 12px !important;
+  grid-template-columns: 46px 1fr 40px !important;
+}
+
+.home-profile-entry strong {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+
+.home-avatar {
+  width: 46px !important;
+  height: 46px !important;
+  border: 2.5px solid rgba(255, 230, 166, 0.95) !important;
+  box-shadow: 0 6px 16px rgba(80, 11, 8, 0.28) !important;
+}
+
+.message-dot {
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  font-size: 18px !important;
+}
+
+/* 全幅无圆角 banner */
+.home-banner {
+  position: relative;
+  z-index: 1;
+  width: 100% !important;
+  height: 198px !important;
+  margin: 4px 0 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.home-banner img {
+  object-position: center 28% !important;
+  transform: scale(1.16) !important;
+  transform-origin: center 28% !important;
+}
+
+.banner-shade {
+  background: linear-gradient(180deg, rgba(150, 18, 15, 0.05) 0%, rgba(95, 12, 10, 0.28) 40%, rgba(12, 6, 5, 0.66) 100%) !important;
+}
+
+.banner-copy {
+  left: 22px !important;
+  right: 22px !important;
+  bottom: 22px !important;
+}
+
+.banner-copy span {
+  padding: 6px 11px !important;
+  background: rgba(228, 0, 43, 0.92) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px;
+}
+
+.banner-copy strong {
+  margin-top: 9px !important;
+  font-size: 25px !important;
+  line-height: 1.08 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+}
+
+.banner-copy em {
+  height: 32px !important;
+  margin-top: 13px !important;
+  padding: 0 15px !important;
+  border-radius: 16px !important;
+  color: #A4001E !important;
+  background: #fff !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}
+
+/* 白色圆角面板压住红色 hero */
+.home-entry-section {
+  position: relative;
+  z-index: 2;
+  margin-top: -26px !important;
+  padding: 24px 16px 6px !important;
+  background: #fff !important;
+  border-radius: 28px 28px 0 0 !important;
+  box-shadow: 0 -14px 34px rgba(120, 10, 8, 0.16) !important;
+}
+
+.home-feed-section {
+  position: relative;
+  z-index: 2;
+  background: #fff !important;
+  margin-top: 0 !important;
+  padding-top: 6px !important;
+}
+
+/* 功能入口：彩色图标芯片 */
+.home-entry-section .service-grid {
+  margin-top: 0 !important;
+  gap: 12px !important;
+}
+
+.home-entry-section .service-tile {
+  height: 80px !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: 0 8px 18px rgba(228, 0, 43, 0.05) !important;
+  gap: 9px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.home-entry-section .service-tile:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 4px 10px rgba(228, 0, 43, 0.08) !important;
+}
+
+.home-entry-section .service-tile i {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 13px !important;
+  font-size: 19px !important;
+}
+
+.service-tile.red i,
+.home-entry-section .service-tile.red i {
+  background: #FFE7E4 !important;
+  color: var(--r-primary) !important;
+}
+
+.service-tile.gold i,
+.home-entry-section .service-tile.gold i {
+  background: #FFF1D2 !important;
+  color: var(--h-gold-deep) !important;
+}
+
+.service-tile.gray i,
+.home-entry-section .service-tile.gray i {
+  background: #EEF1F5 !important;
+  color: #5b6470 !important;
+}
+
+/* feed 列表：更利落 */
+.home-feed-card {
+  padding: 0 6px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.home-feed-row {
+  min-height: 92px !important;
+  padding: 14px 4px !important;
+  border-bottom: 1px solid #f1ece9 !important;
+  grid-template-columns: 1fr 84px !important;
+  transition: transform 160ms ease;
+}
+
+.home-feed-row:active {
+  transform: scale(0.99);
+}
+
+.home-feed-row h3 {
+  margin-bottom: 9px !important;
+  font-size: 15.5px !important;
+  line-height: 1.38 !important;
+  font-weight: 700 !important;
+  color: var(--ink);
+}
+
+.home-feed-row img {
+  width: 84px !important;
+  height: 68px !important;
+  border-radius: 13px !important;
+  object-position: center center !important;
+  box-shadow: 0 6px 14px rgba(20, 20, 40, 0.1);
+}
+
+.home-feed-row p span {
+  margin-right: 0 !important;
+  padding: 3px 8px !important;
+  color: #fff !important;
+  background: var(--r-primary) !important;
+  border-radius: 7px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+.home-feed-row p em {
+  color: #9b948e !important;
+  font-style: normal !important;
+  font-size: 12px !important;
+}
+
+/* ============================================================
+   通讯录 · 山城郁郁葱葱
+   ============================================================ */
+.contacts-page {
+  background: #ffffff !important;
+}
+
+.contacts-hero {
+  min-height: 264px !important;
+  padding-bottom: 22px !important;
+  color: #fff;
+  background:
+    radial-gradient(circle at 14% 12%, rgba(255, 255, 255, 0.16), transparent 36%),
+    radial-gradient(circle at 92% 90%, rgba(52, 211, 153, 0.3), transparent 44%),
+    linear-gradient(158deg, #064E3B 0%, #0E9F6E 62%, #34D399 100%) !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.contacts-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 96px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 96' preserveAspectRatio='none'%3E%3Cpath d='M0 96 L70 24 L150 96 Z' fill='%23054a36'/%3E%3Cpath d='M104 96 L206 8 L312 96 Z' fill='%23075c40' opacity='0.95'/%3E%3Cpath d='M258 96 L342 38 L390 96 Z' fill='%23054a36'/%3E%3C/svg%3E") no-repeat center bottom / 100% 100%;
+  opacity: 0.6 !important;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contacts-hero h1 {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+}
+
+.contacts-hero p {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.directory-section {
+  position: relative;
+  z-index: 2;
+  margin-top: -30px !important;
+  padding: 28px 16px 12px !important;
+  background: #fff !important;
+  border-radius: 30px 30px 0 0 !important;
+  box-shadow: 0 -14px 34px rgba(6, 78, 59, 0.18) !important;
+}
+
+.directory-section h2 {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  margin-bottom: 16px !important;
+}
+
+.directory-section h2 i {
+  color: var(--g-primary) !important;
+}
+
+.alumni-list-card {
+  background: #fff !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(14, 159, 110, 0.1) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.alumni-row {
+  padding: 15px 4px !important;
+  border-bottom: 1px solid #e6f1ec !important;
+  transition: transform 160ms ease;
+}
+
+.alumni-row:active {
+  transform: scale(0.99);
+}
+
+.alumni-avatar {
+  box-shadow: 0 6px 14px rgba(14, 159, 110, 0.3) !important;
+}
+
+.alumni-row h3 {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+}
+
+.alumni-row h3 em {
+  font-style: normal;
+  font-size: 13px;
+  color: #9b948e;
+  margin-left: 6px;
+}
+
+.alumni-row p {
+  color: #6e7d76 !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================================
+   广场 · 矿产宝藏 能量满满
+   ============================================================ */
+.square-page {
+  background: #ffffff !important;
+}
+
+.square-hero {
+  position: relative;
+  min-height: 250px !important;
+  padding-bottom: 22px !important;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 14%, rgba(224, 169, 59, 0.3), transparent 32%),
+    radial-gradient(circle at 14% 88%, rgba(110, 190, 255, 0.14), transparent 44%),
+    linear-gradient(150deg, #07070A 0%, #16130F 58%, #241F18 100%) !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.square-hero h1 {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+}
+
+.square-hero p {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.big-search,
+.square-search {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #fff !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.square-search input {
+  color: #fff !important;
+}
+
+.square-search input::placeholder {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.chip-row button,
+.square-chip-row button {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.chip-row button.active,
+.square-chip-row button.active {
+  background: #fff !important;
+  color: #141210 !important;
+  font-weight: 800 !important;
+}
+
+.masonry-feed {
+  position: relative;
+  z-index: 2;
+  margin-top: -26px !important;
+  padding: 22px 14px 12px !important;
+  background: #fff !important;
+  border-radius: 28px 28px 0 0 !important;
+  box-shadow: 0 -14px 34px rgba(0, 0, 0, 0.22) !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  align-items: start !important;
+}
+
+.post-card {
+  background: #fff !important;
+  border-radius: 18px !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-card) !important;
+  overflow: hidden !important;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.post-card:active {
+  transform: translateY(2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08) !important;
+}
+
+.post-card h2 {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.32 !important;
+}
+
+.post-tag {
+  background: #2b2722 !important;
+  color: var(--s-gold) !important;
+  font-weight: 700 !important;
+}
+
+.tag-二手,
+.tag-招聘 {
+  color: var(--s-gold-deep) !important;
+  background: #FBF0CE !important;
+}
+
+.tag-求助 {
+  color: #de342a !important;
+  background: #FEE5E3 !important;
+}
+
+.floating-compose {
+  background: linear-gradient(135deg, #E4002B, #FF5A5F) !important;
+  box-shadow: 0 16px 34px rgba(228, 0, 43, 0.42) !important;
+  border: 2px solid rgba(255, 255, 255, 0.9) !important;
+}
+
+/* ============================================================
+   助力家乡 · 物产丰饶 暖阳
+   ============================================================ */
+.hometown-page {
+  background: #ffffff !important;
+}
+
+.hometown-hero {
+  position: relative;
+  min-height: 168px !important;
+  padding-bottom: 20px !important;
+  overflow: hidden;
+  color: #2a2113 !important;
+  background:
+    radial-gradient(circle at 90% 6%, rgba(255, 255, 255, 0.6), transparent 34%),
+    radial-gradient(circle at 8% 100%, rgba(184, 134, 11, 0.3), transparent 44%),
+    linear-gradient(150deg, #C8901A 0%, #F2B705 55%, #FFD966 100%) !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.hometown-hero h1 {
+  font-size: 30px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+}
+
+.hometown-hero p {
+  color: #5f4f1c !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.hometown-hero::before {
+  content: "";
+  position: absolute;
+  top: -54px;
+  right: -40px;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 18deg at 50% 50%, rgba(255, 255, 255, 0.28) 0deg 5deg, transparent 5deg 16deg);
+  opacity: 0.6 !important;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hometown-section {
+  position: relative;
+  z-index: 2;
+  margin: -24px 16px 16px !important;
+  padding: 22px 16px 14px !important;
+  background: #fff !important;
+  border-radius: 26px !important;
+  box-shadow: 0 -10px 30px rgba(180, 140, 30, 0.14) !important;
+}
+
+.hometown-section + .hometown-section {
+  margin: 14px 16px 16px !important;
+  border-radius: 22px !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.hometown-title {
+  margin-bottom: 16px !important;
+}
+
+.hometown-title h2 {
+  font-size: 19px !important;
+  font-weight: 800 !important;
+}
+
+.hometown-title h2 i {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 12px !important;
+  background: #FFF1D2 !important;
+  color: var(--h-gold-deep) !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 15px !important;
+}
+
+.donation-card,
+.project-row {
+  background: #fff !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(200, 144, 26, 0.12) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform 160ms ease;
+}
+
+.donation-card:active,
+.project-row:active {
+  transform: scale(0.99);
+}
+
+.donation-card img,
+.project-row img {
+  border-radius: 16px !important;
+  box-shadow: 0 6px 14px rgba(120, 90, 20, 0.16);
+}
+
+.donation-card h3,
+.project-row h3 {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+}
+
+.donation-card p,
+.project-row p {
+  color: #9a8350 !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+}
+
+.product-card {
+  border-radius: 18px !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform 160ms ease;
+}
+
+.product-card:active {
+  transform: translateY(2px);
+}
+
+.product-card h3 {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+.product-card strong {
+  color: var(--r-primary) !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+}
+
+.product-card img {
+  border-radius: 0 !important;
+}
+
+.shop-button {
+  height: 54px !important;
+  border-radius: 18px !important;
+  border: 0 !important;
+  background: linear-gradient(135deg, #F2B705, #FFD966) !important;
+  color: #5a4410 !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 10px 22px rgba(200, 144, 26, 0.28);
+}
+
+/* ============================================================
+   我的 · 本溪雪 晶莹圣洁
+   ============================================================ */
+.mine-page {
+  position: relative;
+  background: linear-gradient(180deg, #eaf2f8 0%, #f4f8fb 46%, #ffffff 100%) !important;
+}
+
+.mine-page::before {
+  height: 240px !important;
+  background: linear-gradient(180deg, rgba(127, 181, 214, 0.4), rgba(241, 243, 245, 0)) !important;
+}
+
+.profile-card,
+.quick-actions,
+.mine-section,
+.settings-card {
+  position: relative;
+  z-index: 1;
+}
+
+.profile-card {
+  margin: 14px 16px 0 !important;
+  padding: 20px 18px !important;
+  border-radius: 24px !important;
+  background: linear-gradient(135deg, #2F6DB0 0%, #4F8FCB 60%, #7FB5D6 100%) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 18px 40px rgba(47, 109, 176, 0.28) !important;
+}
+
+.profile-top img {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  border: 3px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 8px 18px rgba(20, 50, 90, 0.3);
+}
+
+.profile-top h1 {
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+}
+
+.profile-top p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+.profile-top p span {
+  background: rgba(255, 255, 255, 0.22) !important;
+  color: #fff !important;
+  padding: 2px 8px !important;
+  border-radius: 8px !important;
+}
+
+.gear-dot {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.card-number {
+  margin-top: 16px !important;
+  padding-top: 14px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.22) !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+.card-number em {
+  color: #fff !important;
+  font-style: normal;
+  font-weight: 700 !important;
+}
+
+.quick-actions {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 10px !important;
+  margin: 14px 16px 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.quick-action {
+  height: 76px !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-card) !important;
+  flex-direction: column !important;
+  gap: 7px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: var(--ink) !important;
+  transition: transform 160ms ease;
+}
+
+.quick-action:active {
+  transform: translateY(2px);
+}
+
+.quick-action span {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 13px !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 18px !important;
+}
+
+.quick-action.red span {
+  background: #FFE7E4 !important;
+  color: var(--r-primary) !important;
+}
+
+.quick-action.gold span {
+  background: #FFF1D2 !important;
+  color: var(--h-gold-deep) !important;
+}
+
+.quick-action.green span {
+  background: #E2F5EC !important;
+  color: var(--g-primary) !important;
+}
+
+.quick-action.dot span {
+  position: relative;
+}
+
+.quick-action.dot::after {
+  background: var(--r-primary) !important;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.mine-section {
+  margin: 18px 16px 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mine-section h2 {
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  margin: 4px 2px 12px !important;
+  color: var(--ink);
+}
+
+.settings-card {
+  background: #fff !important;
+  border-radius: 20px !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-card) !important;
+  overflow: hidden !important;
+}
+
+.settings-row {
+  padding: 15px 16px !important;
+  border-bottom: 1px solid #f1f3f5 !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+.settings-row > span {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 12px !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 16px !important;
+  background: #EEF1F5 !important;
+  color: #5b6470 !important;
+}
+
+.settings-row.verified > span {
+  background: #E2F5EC !important;
+  color: var(--g-primary) !important;
+}
+
+.settings-row.red > span {
+  background: #FFE7E4 !important;
+  color: var(--r-primary) !important;
+}
+
+.settings-row.verified em {
+  color: var(--g-primary) !important;
+  font-weight: 700 !important;
+}
+
+/* ============================================================
+   通用：详情 / 列表 / 表单壳层 —— 与重设计保持一致
+   ============================================================ */
+.detail-page {
+  background: #fff !important;
+}
+
+.image-hero {
+  height: 220px !important;
+}
+
+.detail-content {
+  position: relative;
+  z-index: 2;
+  margin-top: -22px !important;
+  padding: 26px 20px 40px !important;
+  background: #fff !important;
+  border-radius: 26px 26px 0 0 !important;
+  box-shadow: 0 -14px 34px rgba(20, 20, 40, 0.12) !important;
+}
+
+.detail-content h1,
+.post-detail-content h1,
+.article-body h1 {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+}
+
+.detail-content h2,
+.message-block h2,
+.form-section h2,
+.certify-form h2 {
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: var(--ink);
+}
+
+.pill {
+  padding: 6px 11px !important;
+  border-radius: 9px !important;
+  font-weight: 700 !important;
+}
+
+.pill.gold,
+.outline-tabs button.active,
+.project-tabs button.active {
+  background: var(--h-gold) !important;
+  color: #2b2113 !important;
+}
+
+.stat-grid {
+  gap: 10px !important;
+}
+
+.stat-grid div {
+  background: #f6f7f9 !important;
+  border-radius: 14px !important;
+  padding: 12px 6px !important;
+  text-align: center;
+}
+
+.stat-grid strong {
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: var(--ink);
+}
+
+.stat-grid span {
+  font-size: 11.5px !important;
+  color: #9098a1;
+  font-weight: 600;
+}
+
+/* 列表类页面（资讯/活动/捐赠/好物/项目/设置）统一卡片感 */
+.news-list-page,
+.activity-list-page,
+.donation-list-page,
+.product-grid-page,
+.project-list-page,
+.alumni-detail-page,
+.settings-page-list,
+.certify-form,
+.form-page {
+  background: #fff !important;
+}
+
+.news-card {
+  background: #fff !important;
+  border-radius: 22px !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-card) !important;
+  margin-top: 14px !important;
+}
+
+.news-row {
+  min-height: 80px !important;
+  padding: 12px 4px !important;
+  border-bottom: 1px solid #f1ece9 !important;
+  grid-template-columns: 1fr 60px !important;
+}
+
+.news-row h3 {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--ink);
+}
+
+.news-row p span {
+  color: #fff !important;
+  background: var(--r-primary) !important;
+  padding: 3px 8px !important;
+  border-radius: 7px !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+}
+
+.news-row img {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 14px !important;
+  box-shadow: 0 6px 14px rgba(20, 20, 40, 0.1);
+}
+
+.activity-card {
+  background: #fff !important;
+  border-radius: 22px !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-card) !important;
+  overflow: hidden !important;
+}
+
+.activity-card h2 {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: var(--ink);
+}
+
+.activity-card strong {
+  color: var(--r-primary) !important;
+  font-weight: 800 !important;
+}
+
+.activity-card em {
+  color: #9b948e !important;
+  font-style: normal !important;
+}
+
+/* 服务聚合页 */
+.service-hub h2 {
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  color: var(--ink);
+}
+
+.service-hub button {
+  background: #fff !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-card) !important;
+  border-radius: 18px !important;
+  font-weight: 700 !important;
+}
+
+.service-hub button i {
+  color: var(--r-primary) !important;
+}
+
+/* 登录 / 认证页：更张扬的头部 */
+.auth-panel h1 {
+  font-size: 30px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+  color: var(--r-primary) !important;
+}
