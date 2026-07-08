@@ -1,0 +1,21 @@
+# 腾讯云 COS 部署配置（coscli）
+#
+# 用法：
+#   1. 复制本文件为 .cos.yaml：  cp .cos.yaml.example .cos.yaml
+#   2. 把下面的 secretid / secretkey / name / region 改成你自己的
+#   3. 运行：  npm run deploy
+#
+# 注意：.cos.yaml 已被 .gitignore 忽略，不会上传到 GitHub，密钥安全。
+
+cos:
+  base:
+    # 在 https://console.cloud.tencent.com/cam/capi 获取（子账号需有 COS 读写权限）
+    secretid: YOUR_SECRET_ID
+    secretkey: YOUR_SECRET_KEY
+  buckets:
+    # name 格式：存储桶名称-APPID（APPID 在 COS 控制台桶列表可见）
+    # alias 是 deploy 脚本里用的短名，保持 bengao 即可
+    # region 改成你桶所在地域，如 ap-beijing / ap-shanghai / ap-guangzhou
+    - name: bengao-1250000000
+      alias: bengao
+      region: ap-guangzhou
